@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controller\Admin\TenantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth','isAdmin']], function () {
 
-    Route::get('/dashboard', function () {
-       return view('admin.index');
-    });
+    Route::get('/dashboard', 'Admin\DashboardController@index');
  
+    Route::get('/tenants', 'Admin\TenantController@index');
+    Route::get('add-tenant', 'Admin\TenantController@addTenant');
+    Route::post('save-tenant', 'Admin\TenantController@saveTenant');
+    Route::get('edit-tenant/{id}',[TenantController::class, 'editTenant']);
+
  });
