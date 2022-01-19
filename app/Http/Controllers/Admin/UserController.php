@@ -12,8 +12,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $tenants = Tenant::all()->where('tenant_status', '!=', 0);
-        return view('admin.user.index', compact('users', 'tenants'));
+        // $users = User::with('user_tenant')->get();
+        //$tenants = Tenant::all()->where('tenant_status', '!=', 0);
+        //$user_tenant = Use::with('category')->get();
+        return view('admin.user.index', compact('users'));
     }
 
     public function updateUserTenant($id, Request $request)

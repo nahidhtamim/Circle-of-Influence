@@ -106,7 +106,7 @@
                             @endif
                             {{-- User Tenant --}}
                             <td class="text-primary">
-                                {{$user->tenant_id}} <button href="{{url('users/'.$user->id)}}" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                {{$user->user_tenant->tenant_name}} <button href="{{url('users/'.$user->id)}}" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
                                     <i class="material-icons">edit</i></button>
                                     
                                     <!-- Modal -->
