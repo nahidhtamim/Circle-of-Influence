@@ -37,4 +37,23 @@ class TenantController extends Controller
         $tenant = Tenant::find($id);
         return view('admin.tenant.editTenant',compact('tenant'));
     }
+
+    public function updateTenant($id, Request $request)
+    {
+        $tenant = Tenant::find($id);
+        $tenant->tenant_name = $request->input('tenant_name');
+        $tenant->tenant_desc = $request->input('tenant_desc');
+        $tenant->tenant_status = $request->input('tenant_status') == TRUE ? '1':'0';
+        $tenant->meta_tenant_title = $request->input('meta_tenant_title');
+        $tenant->meta_tenant_keywords = $request->input('meta_tenant_keywords');
+        $tenant->update();
+        return redirect('/tenants')->with('status', 'Tenant Updated Successfully');
+    }
+
+    public function deleteTenant($id)
+    {
+        $tenant = Tenant::find($id);
+        $tenant->delete();
+        return redirect('/tenants')->with('status', 'Tenant Deleted Successfully');
+    }
 }

@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
   <!--
     Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -9,16 +9,28 @@
     </a></div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item active  ">
+      <li class="nav-item {{Request::is('dashboard') ? 'active':''}}">
         <a class="nav-link" href="{{url('/dashboard')}}">
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item {{Request::is('tenants') ? 'active':''}}">
         <a class="nav-link" href="{{url('/tenants')}}">
           <i class="material-icons">article</i>
           <p>Tenants</p>
+        </a>
+      </li>
+      <li class="nav-item {{Request::is('users') ? 'active':''}}">
+        <a class="nav-link" href="{{url('/users')}}">
+          <i class="material-icons">perm_identity</i>
+          <p>Users</p>
+        </a>
+      </li>
+      <li class="nav-item {{Request::is('influencer-types') ? 'active':''}}">
+        <a class="nav-link" href="{{url('/influencer-types')}}">
+          <i class="material-icons">list</i>
+          <p>Influencer Types</p>
         </a>
       </li>
       {{-- <li class="nav-item ">

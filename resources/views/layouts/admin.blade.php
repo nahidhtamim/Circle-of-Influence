@@ -61,7 +61,7 @@
     <script src="{{ asset('admin/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-
+    
     <!-- Plugin for the momentJs  -->
     <script src="{{ asset('admin/js/plugins/moment.min.js') }}"></script>
     <!--  Plugin for Sweet Alert -->
@@ -99,7 +99,19 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('admin/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+
+    @if(session('status'))
+      <script>
+        swal("{{session('status')}}")
+      </script>
+    @endif
+    <script>
+      $('#exampleModal').on('show.bs.modal', function (e) {
+        console.log('modal opened')
+      })
+      </script>
     <script src="{{ asset('admin/js/demo.js') }}"></script>
+    
  
 </body>
 </html>
