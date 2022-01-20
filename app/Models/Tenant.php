@@ -19,8 +19,13 @@ class Tenant extends Model
         'meta_tenant_keywords',
     ];
 
-    public function tenant_user()
-    {
-        return $this->hasMany(User::class);
-    }
+    // public function tenant_user()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
+
+    // public function tenant_user()
+    // {
+    //     return $this->hasMany('App\User', 'tenant_id');
+    // }
 }

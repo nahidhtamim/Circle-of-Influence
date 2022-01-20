@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -29,10 +33,7 @@ class User extends Authenticatable
         'tenant_id',
     ];
 
-    public function user_tenant(){
-        return $this->belongsTo(Tenant::class);
-    }
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -53,5 +54,10 @@ class User extends Authenticatable
     ];
 
     
+
+    public function userTenant()
+    {
+        return $this->belongsTo(Tenant::class,'tenant_id','id');
+    }
 
 }

@@ -13,9 +13,8 @@ class UserController extends Controller
     {
         $users = User::all();
         // $users = User::with('user_tenant')->get();
-        //$tenants = Tenant::all()->where('tenant_status', '!=', 0);
-        //$user_tenant = Use::with('category')->get();
-        return view('admin.user.index', compact('users'));
+        $tenants = Tenant::all()->where('tenant_status', '!=', 0);
+        return view('admin.user.index', compact('users', 'tenants'));
     }
 
     public function updateUserTenant($id, Request $request)
@@ -25,4 +24,45 @@ class UserController extends Controller
         $user_tenant->update();
         return redirect('/users')->with('status', 'User Tenant Updated Successfully');
     }
+
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        return view('admin.user.editUser',compact('user'));
+    }
+
+    public function updateUser($id, Request $request)
+    {
+        $user = User::find($id);
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->mobile = $request->input('mobile');
+        $user->address = $request->input('address');
+        $user->update();
+        return redirect('/users')->with('status', 'User Updated Successfully');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/users')->with('status', 'User Deleted Successfully');
+    }
+
+    public function updateUserRole($id)
+    {
+        $user = User::find($id);
+        if($user->role_as =='1'){
+            $user->role_as = '0';
+        }
+        elseif($user->role_as =='0'){
+            $user->role_as = '1';
+        }
+        $user->update();
+        return redirect('/users')->with('status', 'User Role Updated Successfully');
+    }
+
 }

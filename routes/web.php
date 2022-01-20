@@ -46,11 +46,11 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::get('/users',[UserController::class, 'index']);
     // Route::get('add-User',[UserController::class, 'addUser']);
     // Route::post('save-User',[UserController::class, 'saveUser']);
-    // Route::get('edit-User/{id}',[UserController::class, 'editUser']);
-    // Route::post('update-User/{id}',[UserController::class, 'updateUser']);
+    Route::get('edit-user/{id}',[UserController::class, 'editUser']);
+    Route::post('update-user/{id}',[UserController::class, 'updateUser']);
     // Route::get('delete-User/{id}',[UserController::class, 'deleteUser']);
     Route::post('update-user-tenant/{id}',[UserController::class, 'updateUserTenant']);
-
+    Route::post('change-user-role/{id}',[UserController::class, 'chaneUserTenant']);
 
     //Influencer Type Controllers
     Route::get('/influencer-types',[InfluencerTypeController::class, 'index']);

@@ -97,16 +97,18 @@
                             {{-- User Role --}}
                             @if($user->role_as == 1)
                             <td class="text-primary">
-                              Admin
+                              Admin<button rel="tooltip" title="Swap User Role" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                <a href="{{url('change-user-role/'.$user->id)}}"><i class="material-icons">published_with_changes</i></button></a>
                             </td>
                             @else
                             <td class="text-success">
-                              Influencer
+                              Influencer<button rel="tooltip" title="Swap User Role" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                <a href="{{url('change-user-role/'.$user->id)}}"><i class="material-icons">published_with_changes</i></button></a>
                             </td>
                             @endif
-                            {{-- User Tenant --}}
+                            {{-- User Tenant ----}}
                             <td class="text-primary">
-                                {{$user->user_tenant->tenant_name}} <button href="{{url('users/'.$user->id)}}" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+                              {{$user->userTenant->tenant_name}}<button rel="tooltip" title="Edit User Tenant" class="btn btn-primary btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
                                     <i class="material-icons">edit</i></button>
                                     
                                     <!-- Modal -->
@@ -147,10 +149,10 @@
                             
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" >
-                              <a href="#"><i class="material-icons">edit</i></a>
+                              <a href="{{url('edit-user/'.$user->id)}}"><i class="material-icons">edit</i></a>
                             </button>
                             <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                              <a href="#"><i class="material-icons">close</i></a>
+                              <a href="{{url('delete-user/'.$user->id)}}"><i class="material-icons">close</i></a>
                             </button>
                           </td>
                         </tr>
