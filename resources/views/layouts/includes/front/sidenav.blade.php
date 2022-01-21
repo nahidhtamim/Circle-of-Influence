@@ -1,46 +1,82 @@
 <!-- Sidebar Menu -->
 <div class="responsive-nav">
-	<i class="fa fa-bars" id="menu-toggle"></i>
-	<div id="menu" class="menu">
-	  <i class="fa fa-times" id="menu-close"></i>
-	  <div class="container">
-		<div class="image">
-		  <a href="#"><img src="{{asset('frontend/images/author-image.jpg')}}" alt="" /></a>
-		</div>
-		<div class="author-content">
-		  <h4>Circle of Influence</h4>
-		  {{-- <span>Web Designer</span> --}}
-		</div>
-		<nav class="main-nav" role="navigation">
-		  <ul class="main-menu">
-			<li><a href="{{url('/')}}">Home</a></li>
-			<li><a href="{{url('/pick-influencers')}}">Pick Influencers</a></li>
-			<li><a href="#section3">See History</a></li>
-			<li><a href="#section2">Select Influencer</a></li>
-			<li><a href="#section4">Contact</a></li>
+    <i class="fa fa-bars" id="menu-toggle"></i>
+    <div id="menu" class="menu">
+        <i class="fa fa-times" id="menu-close"></i>
+        <div class="container">
+            <div class="image">
+                <a href="#"><img src="{{asset('frontend/images/author-image.jpg')}}" alt="" /></a>
+            </div>
+            <div class="author-content">
+                <h4>Circle of Influence</h4>
+                <!-- {{-- <span>Web Designer</span> --}} -->
+            </div>
+            @guest
+            @if (Route::has('login'))
+            <div class="social-network">
+                <ul class="soial-icons">
+                    <li>
+                        <a href="{{ route('login') }}" data-toggle="tooltip" data-placement="top" title="SignIn"><i
+                                class="fa fa-sign-in"></i></a>
+                    </li>
+                    @endif
 
-			<li><div class="btn-group" role="group" aria-label="Basic example">
-				{{-- <a  class="btn btn-light">Account</a>
-				<a type="button" class="btn btn-light">Signin</a>
-				<a type="button" class="btn btn-light">Signup</a> --}}
-				@if (Route::has('login'))
-                {{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> --}}
-                    @auth
-                        <a href="{{ url('/') }}"  class=" btn btn-light">Profile</a>
-						<a href="{{ url('/logout') }}" class="text-sm btn btn-light">LogOut</a>
-                    @else
-                        <a href="{{ route('login') }}" type="button" class="text-sm btn btn-light">LogIn</a>
+                    @if (Route::has('register'))
+                    <li>
+                        <a href="{{ route('register') }}" data-toggle="tooltip" data-placement="top" title="SignUp"><i
+                                class="fa fa-user-plus"></i></a>
+                    </li>
+                    @endif
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" type="button" class="text-sm btn btn-light">Register</a>
-                        @endif
-                    @endauth
-                {{-- </div> --}}
-            @endif
-			  </div></li>
-		  </ul>
-		</nav>
-		<div class="social-network">
+                </ul>
+                <br>
+                <br>
+            </div>
+			
+			<nav class="main-nav" role="navigation">
+                <ul class="main-menu">
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/contact')}}">Contact</a></li>
+                </ul>
+            </nav>
+            @else
+            <div class="social-network">
+                <ul class="soial-icons">
+                    <li style="font-family: 'Courgette', cursive;">
+                        <h4 class="text-light">
+                            Hello, {{ Auth::user()->username }}
+                        </h4>
+
+                    </li>
+                    <br>
+
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i
+                                class="fa fa-user"></i></a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}" data-toggle="tooltip" data-placement="top" title="SignOut"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                class="fa fa-sign-out"></i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+                <br>
+                <br>
+            </div>
+			<nav class="main-nav" role="navigation">
+                <ul class="main-menu">
+					<li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/pick-influencers')}}">Pick Influencers</a></li>
+                    <li><a href="{{url('/influencer-history')}}">See History</a></li>
+					<li><a href="{{url('/contact')}}">Contact</a></li>
+                </ul>
+            </nav>
+            @endguest
+
+            <!-- <div class="social-network">
 		  <ul class="soial-icons">
 			<li>
 			  <a href="https://fb.com/templatemo"
@@ -60,10 +96,10 @@
 			  <a href="#"><i class="fa fa-rss"></i></a>
 			</li>
 		  </ul>
-		</div>
-		<div class="copyright-text">
-		  <p>Copyright 2019 Reflux Design</p>
-		</div>
-	  </div>
-	</div>
-  </div>
+		</div> -->
+            <div class="copyright-text">
+                <p>Copyright 2022 Circle of Influence</p>
+            </div>
+        </div>
+    </div>
+</div>

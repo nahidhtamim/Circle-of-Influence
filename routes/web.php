@@ -19,9 +19,9 @@ use App\Http\Controllers\Admin\InfluencerTypeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('frontend.index');
+});
 
 
 
@@ -30,9 +30,16 @@ Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/contact', [HomeController::class, 'contact']);
 
-Route::get('/pick-influencers', [HomeController::class, 'pickInfluencer']);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/pick-influencers', [HomeController::class, 'pickInfluencer']);
+    Route::post('/save-influencers', [HomeController::class, 'saveInfluencers']);
+    Route::get('/influencer-history', [HomeController::class, 'influencer_history']);
+});
+
 
 Route::group(['middleware' => ['auth','isAdmin']], function () {
 

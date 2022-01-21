@@ -1,7 +1,9 @@
 @import url(fontawesome.css);
-@import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Lora&display=swap');
 body {
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Courgette', cursive; */
+
+    font-family: 'Lora', serif;
 }
 
 #page-wraper {

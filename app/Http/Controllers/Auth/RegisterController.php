@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
             'role_as' => 0,
-            'tenant_id' => 0,
+            'tenant_id' => 1,
         ]);
     }
 }

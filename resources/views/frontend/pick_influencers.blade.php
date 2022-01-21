@@ -8,7 +8,7 @@
 <section class="section contact-me" data-section="section4">
   <div class="container">
     <div class="section-heading">
-      <h2>Pick 3 Personal & 3 Professional Life Influencers</h2>
+      <h2>Pick Influencers</h2>
       <div class="line-dec"></div>
       <span
         >Fusce eget nibh nec justo interdum condimentum. Morbi justo ex,
@@ -16,17 +16,18 @@
         sit amet, consectetur adipiscing elit.</span
       >
     </div>
+    <form id="contact" action="{{url('/save-influencers')}}" method="POST">
+      @csrf
     <div class="row">
       <div class="col-md-6">
         <h3 class="text-center">Pick 3 Personal Influencers</h3>
         <hr>
         <div class="right-content">
           <div class="container">
-            <form id="contact" action="" method="post">
               <div class="row">
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="firstPInfluencer">
+                      <select id="inputState" class="form-control" name="first_per_influencer">
                         <option selected>Pick First Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -38,7 +39,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="firstPInfluencerNote"
+                      name="first_per_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -49,7 +50,7 @@
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="secondPInfluencer">
+                      <select id="inputState" class="form-control" name="second_per_influencer">
                         <option selected>Pick Second Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -61,7 +62,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="secondPInfluencerNote"
+                      name="second_per_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -72,7 +73,7 @@
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="thirdPInfluencer">
+                      <select id="inputState" class="form-control" name="third_per_influencer">
                         <option selected>Pick Third Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -84,7 +85,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="thirdPInfluencerNote"
+                      name="third_per_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -93,15 +94,7 @@
                     ></textarea>
                   </fieldset>
                 </div>
-                <div class="col-md-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="button">
-                      Send Message
-                    </button>
-                  </fieldset>
-                </div>
               </div>
-            </form>
           </div>
         </div>
       </div>
@@ -111,11 +104,10 @@
         <hr>
         <div class="right-content">
           <div class="container">
-            <form id="contact" action="" method="post">
               <div class="row">
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="firstWInfluencer">
+                      <select id="inputState" class="form-control" name="first_pro_influencer">
                         <option selected>Pick First Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -127,7 +119,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="firstWInfluencerNote"
+                      name="first_pro_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -138,7 +130,7 @@
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="secondWInfluencer">
+                      <select id="inputState" class="form-control" name="second_pro_influencer">
                         <option selected>Pick Second Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -150,7 +142,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="secondWInfluencerNote"
+                      name="second_pro_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -161,7 +153,7 @@
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                      <select id="inputState" class="form-control" name="thirdWInfluencer">
+                      <select id="inputState" class="form-control" name="third_pro_influencer">
                         <option selected>Pick Third Influencer</option>
                         @foreach ($users as $user)
                           <option value="{{$user->id}}">{{$user->first_name}}  {{$user->last_name}}</option>
@@ -173,7 +165,7 @@
                 <div class="col-md-12">
                   <fieldset>
                     <textarea
-                      name="thirdWInfluencerNote"
+                      name="third_pro_influencer_note"
                       rows="2"
                       class="form-control"
                       id="message"
@@ -182,19 +174,19 @@
                     ></textarea>
                   </fieldset>
                 </div>
-                <div class="col-md-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="button">
-                      Send Message
-                    </button>
-                  </fieldset>
-                </div>
               </div>
-            </form>
           </div>
         </div>
       </div>
+      <div class="col-md-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="button">
+                      Save
+                    </button>
+                  </fieldset>
+                </div>
     </div>
+    </form>
   </div>
 </section>
 
