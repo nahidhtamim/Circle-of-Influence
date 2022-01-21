@@ -1,58 +1,100 @@
 <!DOCTYPE html>
-<html lang="en"> 
-<head>
-    <title>Circle of Influence</title>
-    
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
-    <!-- FontAwesome JS-->
-    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
-    
-    <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="{{asset('frontend/assets/css/theme-1.css')}}">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
 
-</head> 
+    <title>@yield('title')</title>
 
-<body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Anthony's Blog</a></h1>
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet" />
 
-        <!-- Start SideNav  -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{asset('frontend/css/fontawesome.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontend/css/templatemo-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontend/css/lightbox.css')}}" />
+  </head>
+
+  <body>
+    <div id="page-wraper">
+
+        <!-- Start Top Navbar  -->
         @include('layouts.includes.front.sidenav')
-        <!-- End SideNav -->
-    </header>
-    
-      <div class="main-wrapper">
+        <!-- End Top Navbar -->
+
         <!-- Start Main Content  -->
         @yield('contents')
         <!-- End Main Content  -->
 
-    </div>
-
-
   </div>
 
-	<!-- jQuery -->
-	<script src="{{asset('frontend/js/jquery.min.js')}}"></script>
-	<!-- jQuery Easing -->
-	<script src="{{asset('frontend/js/jquery.easing.1.3.js')}}"></script>
-	<!-- Bootstrap -->
-	<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
-	<!-- Waypoints -->
-	<script src="{{asset('frontend/js/jquery.waypoints.min.js')}}"></script>
-	<!-- Flexslider -->
-	<script src="{{asset('frontend/js/jquery.flexslider-min.js')}}"></script>
-	
-	
-	<!-- MAIN JS -->
-	<script src="{{asset('frontend/js/main.js')}}"></script>
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+  <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
 
-	</body>
+  <script src="{{asset('frontend/js/isotope.min.js')}}"></script>
+  <script src="{{asset('frontend/js/owl-carousel.js')}}"></script>
+  <script src="{{asset('frontend/js/lightbox.js')}}"></script>
+  <script src="{{asset('frontend/js/custom.js')}}"></script>
+  {{-- <script>
+    $(".main-menu li:first").addClass("active");
+
+    var showSection = function showSection(section, isAnimate) {
+      var direction = section.replace(/#/, ""),
+        reqSection = $(".section").filter(
+          '[data-section="' + direction + '"]'
+        ),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $("body, html").animate(
+          {
+            scrollTop: reqSectionPos
+          },
+          800
+        );
+      } else {
+        $("body, html").scrollTop(reqSectionPos);
+      }
+    };
+
+    var checkSection = function checkSection() {
+      $(".section").each(function() {
+        var $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var currentId = $this.data("section"),
+            reqLink = $("a").filter("[href*=\\#" + currentId + "]");
+          reqLink
+            .closest("li")
+            .addClass("active")
+            .siblings()
+            .removeClass("active");
+        }
+      });
+    };
+
+    $(".main-menu").on("click", "a", function(e) {
+      e.preventDefault();
+      showSection($(this).attr("href"), true);
+    });
+
+    $(window).scroll(function() {
+      checkSection();
+    });
+  </script> --}}
+</body>
 </html>
