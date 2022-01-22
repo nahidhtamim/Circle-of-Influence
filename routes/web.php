@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TenantController;
+use App\Http\Controllers\Admin\UserInfluencerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\InfluencerTypeController;
 
@@ -31,7 +32,7 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('contact', [HomeController::class, 'contact']);
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -57,11 +58,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
     //User Controllers
     Route::get('/users',[UserController::class, 'index']);
-    // Route::get('add-User',[UserController::class, 'addUser']);
-    // Route::post('save-User',[UserController::class, 'saveUser']);
     Route::get('edit-user/{id}',[UserController::class, 'editUser']);
     Route::post('update-user/{id}',[UserController::class, 'updateUser']);
-    // Route::get('delete-User/{id}',[UserController::class, 'deleteUser']);
     Route::post('update-user-tenant/{id}',[UserController::class, 'updateUserTenant']);
     Route::post('change-user-role/{id}',[UserController::class, 'chaneUserTenant']);
 
@@ -72,4 +70,11 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::get('edit-influencer-type/{id}',[InfluencerTypeController::class, 'editInfluencerType']);
     Route::post('update-influencer-type/{id}',[InfluencerTypeController::class, 'updateInfluencerType']);
     Route::get('delete-influencer-type/{id}',[InfluencerTypeController::class, 'deleteInfluencerType']);
+
+
+    //User Influencers Controllers
+    Route::get('/user-influencers',[UserInfluencerController::class, 'index']);
+    Route::get('user-influencer/{id}',[UserInfluencerController::class, 'viewUserInfluencer']);
+    Route::get('/user-influencers/export-personal',[UserInfluencerController::class, 'exportCsvPerosnal']);
+    Route::get('/user-influencers/export-professional',[UserInfluencerController::class, 'exportCsvProfessional']);
  });

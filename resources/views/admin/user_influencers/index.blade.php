@@ -28,11 +28,10 @@
                     <i class="material-icons">people_alt</i> Professional Influencers
                     <div class="ripple-container"></div>
                   </a>
-                </li>         
+                </li>
               </ul>
             </div>
           </div>
-
         </div>
         <div class="card-body">
           <div class="tab-content">
@@ -44,10 +43,10 @@
                             ID
                         </th>
                         <th>
-                            First Name
+                            User
                         </th>
                         <th>
-                            Last Name
+                            
                         </th>
                         <th>
                             Username
@@ -152,133 +151,139 @@
                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" >
                               <a href="{{url('edit-user/'.$user->id)}}"><i class="material-icons">edit</i></a>
                             </button>
-                            {{-- <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <a href="{{url('delete-user/'.$user->id)}}"><i class="material-icons">close</i></a>
-                            </button> --}}
+                            </button>
                           </td>
                         </tr>
                         @endforeach
       
                       </tbody>
                     </table>
-                </div>
+                  </div>
             </div>
             <div class="tab-pane" id="messages">
-              <div class="table-responsive">
-                <table class="table text-center">
-                  <thead class=" text-primary">
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        User
-                    </th>
-                    <th>
-                        1st Personal Influencer
-                    </th>
-                    <th>
-                      Note One
-                    </th>
-                    <th>
-                      2nd Personal Influencer
-                    </th>
-                    <th>
-                      Note Two
-                    </th>
-                    <th>
-                      3rd Personal Influencer
-                    </th>
-                    <th>
-                      Note Three
-                    </th>
-                    <th>
-                      Action
-                    </th>
-                  </thead>
-                  <tbody>
-                    @foreach ($user_influencers as $personal)
-                    <tr>
-                        <td>{{$personal->user_inf->id}}</td>
-                        <td>{{$personal->user_inf->username}}</td>
-                        <td>{{$personal->first_per_inf->username}}</td>
-                        <td>{{$personal->first_per_influencer_note}}</td>
-                        <td>{{$personal->second_per_inf->username}}</td>
-                        <td>{{$personal->second_per_influencer_note}}</td>
-                        <td>{{$personal->third_per_inf->username}}</td>
-                        <td>{{$personal->third_per_influencer_note}}</td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
-                            <a href=""><i class="material-icons">visibility</i></a>
-                          </button>
-                        </td>
-                    </tr>
-                    @endforeach
-  
-                  </tbody>
-                </table>
-            </div>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked>
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>Sign contract for "What are conference organizers afraid of?"</td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="tab-pane" id="settings">
-              <table class="table text-center">
-                <thead class=" text-primary">
-                  <th>
-                      ID
-                  </th>
-                  <th>
-                      User
-                  </th>
-                  <th>
-                      1st Professional Influencer
-                  </th>
-                  <th>
-                    Note One
-                  </th>
-                  <th>
-                    2nd Professional Influencer
-                  </th>
-                  <th>
-                    Note Two
-                  </th>
-                  <th>
-                    3rd Professional Influencer
-                  </th>
-                  <th>
-                    Note Three
-                  </th>
-                  <th>
-                    Action
-                  </th>
-                </thead>
+              <table class="table">
                 <tbody>
-                  @foreach ($user_influencers as $professional)
                   <tr>
-                      <td>{{$professional->user_inf->id}}</td>
-                      <td>{{$professional->user_inf->username}}</td>
-                      <td>{{$professional->first_pro_inf->username}}</td>
-                      <td>{{$professional->first_pro_influencer_note}}</td>
-                      <td>{{$professional->second_pro_inf->username}}</td>
-                      <td>{{$professional->second_pro_influencer_note}}</td>
-                      <td>{{$professional->third_pro_inf->username}}</td>
-                      <td>{{$professional->third_pro_influencer_note}}</td>
-                      <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" title="View User Professional Influencers" class="btn btn-primary btn-link btn-sm" >
-                          <a href=""><i class="material-icons">visibility</i></a>
-                        </button>
-                      </td>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
                   </tr>
-                  @endforeach
-
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked>
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked>
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>Sign contract for "What are conference organizers afraid of?"</td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-
-<div class="csv-button text-center">
-  <button type="button" class="btn btn-primary"> <a href="{{url('/user-influencers/export-personal')}}">CSV Personal</a></button>
-<button type="button" class="btn btn-primary"><a href="{{url('/user-influencers/export-professional')}}">CSV Professional</a></button>
-</div>
     </div>
 
     

@@ -36,7 +36,7 @@
 			<nav class="main-nav" role="navigation">
                 <ul class="main-menu">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="{{url('/contact')}}">Contact</a></li>
+                    <li><a href="{{url('contact')}}">Contact</a></li>
                 </ul>
             </nav>
             @else

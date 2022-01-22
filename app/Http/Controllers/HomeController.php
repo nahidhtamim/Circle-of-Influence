@@ -33,15 +33,11 @@ class HomeController extends Controller
     {
         return view('frontend.contact');
     }
-    // public function activityHistory()
-    // {
-    //     return view('frontend.history');
-    // }
-    
 
+    
     public function pickInfluencer()
     {
-        $users = User::all()->WHERE('role_as', '=', '0');
+        $users = User::all()->WHERE('role_as', '0')->WHERE('id','!=', Auth::id());
         return view('frontend.pick_influencers', compact('users'));
     }
 

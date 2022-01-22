@@ -27,7 +27,10 @@ class User_Influencer extends Model
         'third_pro_influencer_note',
     ];
 
-
+    public function user_inf()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 
     public function first_per_inf()
     {

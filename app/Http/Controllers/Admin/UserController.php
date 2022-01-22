@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tenant;
+use App\Models\User_Influencer;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
+        $user_influencers = User_Influencer::all();
         // $users = User::with('user_tenant')->get();
         $tenants = Tenant::all()->where('tenant_status', '!=', 0);
-        return view('admin.user.index', compact('users', 'tenants'));
+        return view('admin.user.index', compact('users', 'tenants', 'user_influencers'));
+        
     }
 
     public function updateUserTenant($id, Request $request)
@@ -64,5 +67,12 @@ class UserController extends Controller
         $user->update();
         return redirect('/users')->with('status', 'User Role Updated Successfully');
     }
+
+
+    // public function UserInfluencer()
+    // {
+    //     $user_influencers = User_Influencer::find();
+    //     return view('admin.user.editUser',compact('user'));
+    // }
 
 }
