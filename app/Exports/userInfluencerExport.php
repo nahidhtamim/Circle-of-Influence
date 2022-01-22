@@ -45,7 +45,7 @@ class UsersExport implements FromCollection, WithCustomCsvSettings, WithHeadings
         'third_pro_influencer',
         'third_pro_influencer_note',
         'created_at')->get();
-       $personal_influencers->user_id = $personal_influencers->user_inf->username;
+
 
         return $personal_influencers;
     }

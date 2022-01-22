@@ -165,57 +165,58 @@
             </div>
             <div class="tab-pane" id="messages">
               <div class="table-responsive">
-                <table class="table text-center">
-                  <thead class=" text-primary">
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        User
-                    </th>
-                    <th>
-                        1st Personal Influencer
-                    </th>
-                    <th>
-                      Note One
-                    </th>
-                    <th>
-                      2nd Personal Influencer
-                    </th>
-                    <th>
-                      Note Two
-                    </th>
-                    <th>
-                      3rd Personal Influencer
-                    </th>
-                    <th>
-                      Note Three
-                    </th>
-                    <th>
-                      Action
-                    </th>
-                  </thead>
-                  <tbody>
-                    @foreach ($user_influencers as $personal)
-                    <tr>
-                        <td>{{$personal->user_inf->id}}</td>
-                        <td>{{$personal->user_inf->username}}</td>
-                        <td>{{$personal->first_per_inf->username}}</td>
-                        <td>{{$personal->first_per_influencer_note}}</td>
-                        <td>{{$personal->second_per_inf->username}}</td>
-                        <td>{{$personal->second_per_influencer_note}}</td>
-                        <td>{{$personal->third_per_inf->username}}</td>
-                        <td>{{$personal->third_per_influencer_note}}</td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
-                            <a href=""><i class="material-icons">visibility</i></a>
-                          </button>
-                        </td>
-                    </tr>
-                    @endforeach
-  
-                  </tbody>
-                </table>
+                
+<table class="table text-center">
+  <thead class=" text-primary">
+    <th>
+        ID
+    </th>
+    <th>
+        User
+    </th>
+    <th>
+        1st Personal Influencer
+    </th>
+    <th>
+      Note One
+    </th>
+    <th>
+      2nd Personal Influencer
+    </th>
+    <th>
+      Note Two
+    </th>
+    <th>
+      3rd Personal Influencer
+    </th>
+    <th>
+      Note Three
+    </th>
+    <th>
+      Action
+    </th>
+  </thead>
+  <tbody>
+    @foreach ($user_influencers as $personal)
+    <tr>
+        <td>{{$personal->user_inf->id}}</td>
+        <td>{{$personal->user_inf->username}}</td>
+        <td>{{$personal->first_per_inf->username}}</td>
+        <td>{{$personal->first_per_influencer_note}}</td>
+        <td>{{$personal->second_per_inf->username}}</td>
+        <td>{{$personal->second_per_influencer_note}}</td>
+        <td>{{$personal->third_per_inf->username}}</td>
+        <td>{{$personal->third_per_influencer_note}}</td>
+        <td class="td-actions text-center">
+          <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
+            <a href=""><i class="material-icons">visibility</i></a>
+          </button>
+        </td>
+    </tr>
+    @endforeach
+
+  </tbody>
+</table>
             </div>
             </div>
             <div class="tab-pane" id="settings">
@@ -282,4 +283,4 @@
     </div>
 
     
-    @endsection
+@endsection
