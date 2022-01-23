@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Tenant;
-use Illuminate\Http\Request;
-use App\Models\User_Influencer;
-use App\Exports\InfluencersExport;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\userInfluencerExport;
+use App\Exports\personalInfluencerExport;
+use App\Exports\professionalInfluencerExport;
 
 
 
@@ -28,11 +27,13 @@ class UserInfluencerController extends Controller
 
 
     public function exportCsvPerosnal(){
-        return Excel::download(new InfluencersExport, 'personal_influencers.csv');
+        $filename = Carbon::now()->format('Ymd').'-personal_influencers.csv';
+        return Excel::download(new personalInfluencerExport, $filename);
     }
 
     public function exportCsvProfessional(){
-        return Excel::download(new InfluencersExport, 'professional_influencers.csv');
+        $filename = Carbon::now()->format('Ymd').'-professional_influencers.csv';
+        return Excel::download(new professionalInfluencerExport, $filename);
     }
     
 }

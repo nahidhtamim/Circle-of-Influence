@@ -9,7 +9,7 @@
           <div class="card-header card-header-tabs card-header-primary">
             <div class="nav-tabs-navigation">
               <div class="nav-tabs-wrapper">
-                <span class="nav-tabs-title">List of Tenants</span>
+                <span class="nav-tabs-title">List of Influencer Types</span>
                 <ul class="nav nav-tabs"  style="float: right;">
                   <li class="nav-item">
                     <a class="nav-link" href="{{url('add-influencer-type')}}">
@@ -23,7 +23,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table text-center">
+              <table class="table text-center" id="types">
                 <thead class=" text-primary">
                   <th>
                     ID

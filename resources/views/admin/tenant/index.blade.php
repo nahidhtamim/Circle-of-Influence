@@ -23,7 +23,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table text-center">
+              <table class="table text-center" id="tenants">
                 <thead class=" text-primary">
                   <th>
                     ID

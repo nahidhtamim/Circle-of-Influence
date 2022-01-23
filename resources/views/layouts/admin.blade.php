@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{ asset('admin/css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
+    <!-- DataTables CSS Files -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('admin/css/demo.css') }}" rel="stylesheet" />
 
@@ -61,6 +63,7 @@
     <script src="{{ asset('admin/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
     <!--  Plugin for Sweet Alert -->
     <script src="{{ asset('admin/js/plugins/sweetalert2.js') }}"></script>
@@ -82,7 +85,15 @@
       })
       </script>
     <script src="{{ asset('admin/js/demo.js') }}"></script>
-    
+    <script>
+      
+      $(document).ready(function() {
+      $('#tenants, #types, #users_table, #personal_influencers_table, #professional_influencers_table').DataTable( {
+        "pagingType": "full_numbers"
+          } );
+      } );
+
+      </script>
  
 </body>
 </html>
