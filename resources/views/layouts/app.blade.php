@@ -75,8 +75,8 @@
         }
     
         .form span {
-            font-size: 75px;
-            color: #0f8b5c;
+            font-size: 15px;
+            color: #c01e1e;
         }
     
     </style>
