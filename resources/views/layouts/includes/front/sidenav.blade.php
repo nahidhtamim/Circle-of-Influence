@@ -5,7 +5,7 @@
         <i class="fa fa-times" id="menu-close"></i>
         <div class="container">
             <div class="image">
-                <a href="#"><img src="{{asset('frontend/images/author-image.jpg')}}" alt="" /></a>
+                <a href="#"><img src="{{asset('frontend/images/author-image.png')}}" alt="" /></a>
             </div>
             <div class="author-content">
                 <h4>Circle of Influence</h4>

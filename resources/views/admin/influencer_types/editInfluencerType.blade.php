@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+Edit Influencer Type - Circle of Influence
+@endsection
 
 @section('contents')
 

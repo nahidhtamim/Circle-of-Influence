@@ -38,10 +38,10 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
     {
         $personal_influencers =User_Influencer::select(
                         'user_influencers.id',
-                        'user_influencers.user_id' * 4,
-                        // 'user_influencers.user_id',
-                        // 'user_influencers.user_id',
-                        // 'user_influencers.user_id',
+                        'user_influencers.user_id',
+                        'user_influencers.user_id',
+                        'user_influencers.user_id',
+                        'user_influencers.user_id',
                         'user_influencers.first_per_influencer',
                         'user_influencers.first_per_influencer_note',
                         'user_influencers.second_per_influencer',

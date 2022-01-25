@@ -24,16 +24,15 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
 
 
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('contact', [HomeController::class, 'contact']);
-
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/pick-influencers', [HomeController::class, 'pickInfluencer']);

@@ -16,20 +16,12 @@ class CreateUserInfluencersTable extends Migration
         Schema::create('user_influencers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('first_per_influencer');
-            $table->string('first_per_influencer_note');
-            $table->integer('second_per_influencer');
-            $table->string('second_per_influencer_note');
-            $table->integer('third_per_influencer');
-            $table->string('third_per_influencer_note');
-            $table->integer('first_pro_influencer');
-            $table->string('first_pro_influencer_note');
-            $table->integer('second_pro_influencer');
-            $table->string('second_pro_influencer_note');
-            $table->integer('third_pro_influencer');
-            $table->string('third_pro_influencer_note');
+            $table->integer('type_id');
+            $table->integer('influencer_id');
+            $table->string('influencer_note');
+            $table->integer('selection_influencer_id');
+            $table->integer('influencer_no');
             $table->timestamps();
-
         });
     }
 

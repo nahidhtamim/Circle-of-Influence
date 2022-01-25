@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+Edit User - Circle of Influence
+@endsection
 
 @section('contents')
 

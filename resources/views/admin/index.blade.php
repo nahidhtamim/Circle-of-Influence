@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+Dashboard - Circle of Influence
+@endsection
 
 @section('contents')
 

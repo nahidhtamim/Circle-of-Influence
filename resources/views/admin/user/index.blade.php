@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+Users - Circle of Influence
+@endsection
 
 @section('contents')
 
@@ -9,7 +12,7 @@
             <div class="card-header card-header-tabs card-header-primary">
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
-                        <span class="nav-tabs-title">Tasks:</span>
+                        <span class="nav-tabs-title">Lists:</span>
                         <ul class="nav nav-tabs" data-tabs="tabs">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#profile" data-toggle="tab">

@@ -24,10 +24,13 @@
           </div>
           <div class="col-md-6">
             <div class="right-text">
-              <h4>What is Circle of Influence?</h4>
+              <h4>What Is Circle Of Influence?</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque magni iure ex assumenda provident quod quia omnis nemo fugiat sint, nostrum deleniti, reprehenderit ut. Mollitia vero molestias explicabo. Voluptate, recusandae?
+                Your Circle of Influence are the things that concern you that you can do something about. For example – you may be worried about the economy or climate change or coronavirus (i.e. circle of concern), however what can you do about it (i.e. your circle of influence)?
               </p>
+              {{-- <p>
+              We can’t control the economy or a global pandemic. As we react, we tend to focus on the Circle of Concern, which depletes our energy, because we have no control over it. The energy focused on the Circle of Concern is negative. If you focus on the Circle of Concern and neglect the Circle of Influence, eventually the Circle of Influence will get smaller. This will add to feelings of stress and helplessness, because you cannot change anything in the Circle of Concern.
+              </p> --}}
               <div class="white-button">
                 <a href="#">Read More</a>
               </div>
@@ -39,13 +42,9 @@
         <div class="row">
           <div class="col-md-6">
             <div class="left-text">
-              <h4>Sed sagittis rhoncus velit</h4>
+              <h4>What Do We Do?</h4>
               <p>
-                Pellentesque habitant morbi tristique senectus et netus et
-                malesuada fames ac turpis egestas. Vestibulum fermentum
-                eleifend nibh, vitae sodales elit finibus pretium.
-                Suspendisse potenti. Ut sollicitudin risus a sollicitudin
-                semper.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, assumenda incidunt aliquam architecto deleniti quo mollitia voluptatum omnis amet dolor! Optio excepturi veritatis aliquam animi? Autem voluptatem mollitia quos repellendus.
               </p>
               <div class="white-button">
                 <a href="#">Read More</a>

@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+Tenants - Circle of Influence
+@endsection
 
 @section('contents')
 
