@@ -12,8 +12,6 @@ Register - Circle of Influence
 <i class="material-icons" style="color: #0f8b5c; font-size: 75px;">lock</i>
 <br>
                         <div class="row mb-3">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
-
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
                             </div>

@@ -60,4 +60,9 @@ class User extends Authenticatable
         return $this->belongsTo(Tenant::class,'tenant_id','id');
     }
 
+    public function influencers()
+    {
+        return $this->hasMany(Influencer::class);
+    }
+
 }

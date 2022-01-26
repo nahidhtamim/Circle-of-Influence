@@ -216,7 +216,7 @@ Users - Circle of Influence
                                     </th>
                                 </thead>
                                 <tbody>
-                                    @foreach($user_influencers as $personal)
+                                    {{-- @foreach($user_influencers as $personal)
                                         <tr>
                                             <td>{{ $personal->user_inf->id }}</td>
                                             <td>{{ $personal->user_inf->username }}</td>
@@ -232,7 +232,7 @@ Users - Circle of Influence
                                               </button>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
 
                                 </tbody>
                             </table>
@@ -270,7 +270,7 @@ Users - Circle of Influence
                                 </th>
                             </thead>
                             <tbody>
-                                @foreach($user_influencers as $professional)
+                                {{-- @foreach($user_influencers as $professional)
                                     <tr>
                                         <td>{{ $professional->user_inf->id }}</td>
                                         <td>{{ $professional->user_inf->username }}</td>
@@ -288,7 +288,7 @@ Users - Circle of Influence
                                             </button>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
 
                             </tbody>
                         </table>

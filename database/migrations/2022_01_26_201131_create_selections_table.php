@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInfluencerSelectionsTable extends Migration
+class CreateSelectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateInfluencerSelectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('influencer_selections', function (Blueprint $table) {
+        Schema::create('selections', function (Blueprint $table) {
             $table->id();
+            $table->string('activity_name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateInfluencerSelectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('influencer_selections');
+        Schema::dropIfExists('selections');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\User_Influencer;
+use App\Models\Influencer;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -13,54 +13,43 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
 
     public function headings(): array
     {
-        return ["Sl.", "Last Name", "First Name", "Mobile", "Address", "1st Influencer", "Note", "2nd Influencer", "Note", "3rd Influencer", "Note", "Created At"];
+        return ["Sl.", "Activity", "Last Name", "First Name", "Mobile", "Address",
+         "Influencer Type", "Influencer Last Name", "Influencer First Name", "Note", "Created At"];
     }
 
-    public function map($user_influencers): array
+    public function map($influencers): array
     {
         return [
-            $user_influencers->id,
-            $user_influencers->user_inf->last_name,
-            $user_influencers->user_inf->first_name,
-            $user_influencers->user_inf->mobile,
-            $user_influencers->user_inf->address,
-            $user_influencers->first_per_inf->username,
-            $user_influencers->first_per_influencer_note,
-            $user_influencers->second_per_inf->username,
-            $user_influencers->second_per_influencer_note,
-            $user_influencers->third_per_inf->username,
-            $user_influencers->third_per_influencer_note,
-            Date($user_influencers->created_at),
+            $influencers->id,
+            $influencers->selection->activity_name,
+            $influencers->user_inf->last_name,
+            $influencers->user_inf->first_name,
+            $influencers->user_inf->mobile,
+            $influencers->user_inf->address,
+            $influencers->type->influencer_type,
+            $influencers->influencer->last_name,
+            $influencers->influencer->first_name,
+            $influencers->influencer_note,
+            Date($influencers->created_at),
         ];
     }
 
     public function collection()
     {
-        $personal_influencers =User_Influencer::select(
-                        'user_influencers.id',
-                        'user_influencers.user_id',
-                        'user_influencers.user_id',
-                        'user_influencers.user_id',
-                        'user_influencers.user_id',
-                        'user_influencers.first_per_influencer',
-                        'user_influencers.first_per_influencer_note',
-                        'user_influencers.second_per_influencer',
-                        'user_influencers.second_per_influencer_note',
-                        'user_influencers.third_per_influencer',
-                        'user_influencers.third_per_influencer_note',
-                        'user_influencers.created_at')->get();
+        $personal_influencers =Influencer::select(
+                        'influencers.id',
+                        'influencers.selection_id',
+                        'influencers.user_id',
+                        'influencers.user_id',
+                        'influencers.user_id',
+                        'influencers.user_id',
+                        'influencers.type_id',
+                        'influencers.influencer_id',
+                        'influencers.influencer_id',
+                        'influencers.influencer_note',
+                        'influencers.created_at',
+                        )->where('influencers.type_id', '1')->get();
                     return $personal_influencers;
-        // $personal_influencers =  User_Influencer::select(
-        //     'id',
-        //     'user_id',
-        //     'first_per_influencer',
-        //     'first_per_influencer_note',
-        //     'second_per_influencer',
-        //     'second_per_influencer_note',
-        //     'third_per_influencer',
-        //     'third_per_influencer_note',
-        //     'created_at')->get();
-        // return $personal_influencers;
     }
 
 }
