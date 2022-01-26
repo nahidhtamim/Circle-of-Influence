@@ -1,16 +1,16 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
+
+@section('title')
+Register - Circle of Influence
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
+<div class="login">
+    <div class="form">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+<i class="material-icons" style="color: #0f8b5c; font-size: 75px;">lock</i>
+<br>
                         <div class="row mb-3">
                             <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 
@@ -101,14 +101,12 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
-@endsection --}}
+@endsection
 
-
+{{-- 
 @extends('layouts.app')
 
 @section('title')
@@ -170,4 +168,4 @@ Register - Circle of Influence
     </div>
 </div>
 
-@endsection
+@endsection --}}

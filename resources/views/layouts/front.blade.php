@@ -43,60 +43,51 @@
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+  
+  <script>
+    $(document).ready(function(){
+      $(".add_row").click(function(e){
+        e.preventDefault();
+        $("#data_row").prepend(`<tr id="table_row">
+                                <input type="hidden" class="form-control" id="subject" name="influencer_no[]" value="">
+                                <td>
+                                    <select id="inputState" class="form-control" name="type_id[]">
+                                        @foreach($types as $type)
+                                            <option value="{{ $type->id }}">{{ $type->influencer_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="inputState" class="form-control" name="influencer_id[]" required>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->first_name }}
+                                                {{ $user->last_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <textarea name="influencer_note[]" rows="1" class="form-control" id="message"
+                                        placeholder="Add Note About The Influencer" required=""></textarea>
+                                </td>
+                                <td>
+                                    <a class="text-light btn btn-danger delete_row" style="text-decoration: none;"> <i class="fa fa-minus-square"></i> </a>
+                                </td>
+                            </tr>`);
+      });
+
+      $(document).on('click', '.delete_row', function(e){
+        e.preventDefault();
+        let row_item = $(this).parent().parent();
+        $(row_item).remove();
+      });
+    });
+ </script>
   <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
 
   <script src="{{asset('frontend/js/isotope.min.js')}}"></script>
   <script src="{{asset('frontend/js/owl-carousel.js')}}"></script>
   <script src="{{asset('frontend/js/lightbox.js')}}"></script>
   <script src="{{asset('frontend/js/custom.js')}}"></script>
-  {{-- <script>
-    $(".main-menu li:first").addClass("active");
-
-    var showSection = function showSection(section, isAnimate) {
-      var direction = section.replace(/#/, ""),
-        reqSection = $(".section").filter(
-          '[data-section="' + direction + '"]'
-        ),
-        reqSectionPos = reqSection.offset().top - 0;
-
-      if (isAnimate) {
-        $("body, html").animate(
-          {
-            scrollTop: reqSectionPos
-          },
-          800
-        );
-      } else {
-        $("body, html").scrollTop(reqSectionPos);
-      }
-    };
-
-    var checkSection = function checkSection() {
-      $(".section").each(function() {
-        var $this = $(this),
-          topEdge = $this.offset().top - 80,
-          bottomEdge = topEdge + $this.height(),
-          wScroll = $(window).scrollTop();
-        if (topEdge < wScroll && bottomEdge > wScroll) {
-          var currentId = $this.data("section"),
-            reqLink = $("a").filter("[href*=\\#" + currentId + "]");
-          reqLink
-            .closest("li")
-            .addClass("active")
-            .siblings()
-            .removeClass("active");
-        }
-      });
-    };
-
-    $(".main-menu").on("click", "a", function(e) {
-      e.preventDefault();
-      showSection($(this).attr("href"), true);
-    });
-
-    $(window).scroll(function() {
-      checkSection();
-    });
-  </script> --}}
 </body>
 </html>
