@@ -22,18 +22,21 @@ Pick Influencers - Circle Of Influence
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="influencer_table">
+                        <a class="text-light btn btn-success add_row pull-left" id="add_row" style="text-decoration: none;"> <i class="fa fa-plus-square"></i> </a>
+                        <a class="text-light btn btn-danger delete_row pull-right" style="text-decoration: none;"> <i class="fa fa-minus-square"></i> </a>
                         <thead>
                             <tr>
                                 <th>Influencer Type</th>
                                 <th>Influencers List</th>
                                 <th>Influencer Note</th>
-                                <th><a class="text-light btn btn-success add_row" style="text-decoration: none;"> <i class="fa fa-plus-square"></i> </a></th>
+                                
                             </tr>
                         </thead>
                         <tbody id="data_row">
-                            <tr id="table_row">
+                            <tr id="influencer_row0">
                                 <input type="hidden" class="form-control" id="subject" name="influencer_no[]" value="">
+
                                 <td>
                                     <select id="inputState" class="form-control" name="type_id[]">
                                         @foreach($types as $type)
@@ -54,10 +57,8 @@ Pick Influencers - Circle Of Influence
                                     <textarea name="influencer_note[]" rows="1" class="form-control" id="message"
                                         placeholder="Add Note About The Influencer" required=""></textarea>
                                 </td>
-                                {{-- <td>
-                                    <a class="text-light btn btn-danger delete_row" style="text-decoration: none;"> <i class="fa fa-minus-square"></i> </a>
-                                </td> --}}
                             </tr>
+                            <tr id="influencer_row1"></tr>
                         </tbody>
                     </table>
                 </div>

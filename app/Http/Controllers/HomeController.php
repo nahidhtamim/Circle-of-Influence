@@ -45,25 +45,8 @@ class HomeController extends Controller
 
     public function saveInfluencers(Request $request)
     {
-        if(Auth::check()){
-            $user_influencers = new User_Influencer();
-            $user_influencers->user_id = Auth::id();
-            $user_influencers->first_per_influencer = $request->input('first_per_influencer');
-            $user_influencers->first_per_influencer_note = $request->input('first_per_influencer_note');
-            $user_influencers->second_per_influencer = $request->input('second_per_influencer');
-            $user_influencers->second_per_influencer_note = $request->input('second_per_influencer_note');
-            $user_influencers->third_per_influencer = $request->input('third_per_influencer');
-            $user_influencers->third_per_influencer_note = $request->input('third_per_influencer_note');
-            $user_influencers->first_pro_influencer = $request->input('first_pro_influencer');
-            $user_influencers->first_pro_influencer_note = $request->input('first_pro_influencer_note');
-            $user_influencers->second_pro_influencer = $request->input('second_pro_influencer');
-            $user_influencers->second_pro_influencer_note = $request->input('second_pro_influencer_note');
-            $user_influencers->third_pro_influencer = $request->input('third_pro_influencer');
-            $user_influencers->third_pro_influencer_note = $request->input('third_pro_influencer_note');
- 
-            $user_influencers->save();
+        
             return redirect('/')->with('status', 'Data has been submitted Successfully');
-        }
 
     }
 
