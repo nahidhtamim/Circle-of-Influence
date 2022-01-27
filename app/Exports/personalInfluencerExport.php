@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Influencer;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -13,7 +12,7 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
 
     public function headings(): array
     {
-        return ["Sl.", "Activity", "Last Name", "First Name", "Mobile", "Address",
+        return ["Sl.", "Activity ID", "Activity", "Last Name", "First Name", "Mobile", "Address",
          "Influencer Type", "Influencer Last Name", "Influencer First Name", "Note", "Created At"];
     }
 
@@ -21,6 +20,7 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
     {
         return [
             $influencers->id,
+            $influencers->selection->id,
             $influencers->selection->activity_name,
             $influencers->user_inf->last_name,
             $influencers->user_inf->first_name,
@@ -30,14 +30,15 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
             $influencers->influencer->last_name,
             $influencers->influencer->first_name,
             $influencers->influencer_note,
-            Date($influencers->created_at),
-        ];
+            date_format($influencers->selection->created_at,"Y-M-d"),    
+        ];     
     }
 
     public function collection()
     {
         $personal_influencers =Influencer::select(
                         'influencers.id',
+                        'influencers.selection_id',
                         'influencers.selection_id',
                         'influencers.user_id',
                         'influencers.user_id',

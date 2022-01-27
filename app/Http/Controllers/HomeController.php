@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function saveInfluencers(Request $request)
     {
         $selection = new Selection();
-        $selection->activity_name = date('Ymd', time()).Auth::user()->username;
+        $selection->activity_name = date('Ymd.His.', time()).Auth::user()->username;
         $selection->save();
 
         // $user_id = Auth::id();

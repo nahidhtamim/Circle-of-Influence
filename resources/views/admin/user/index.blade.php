@@ -170,10 +170,14 @@ Users - Circle of Influence
 
 
                                             </td>
-                                            <td class="td-actions text-center">
+                                            {{-- <td class="td-actions text-center">
                                               <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" >
                                                 <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">edit</i></a>
                                               </button>
+                                            </td> --}}
+                                            <td class="text-primary">
+                                                <button type="button" rel="tooltip" title="Edit User Tenant" class="btn btn-primary btn-link btn-sm">
+                                                    <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">edit</i></a></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -188,51 +192,56 @@ Users - Circle of Influence
                             <table class="table text-center" id="personal_influencers_table">
                                 <thead class=" text-primary">
                                     <th>
-                                        ID
+                                        SL.
                                     </th>
                                     <th>
-                                        User
+                                        Date
                                     </th>
                                     <th>
-                                        1st Personal Influencer
+                                        Activity ID
                                     </th>
                                     <th>
-                                        Note One
+                                        Activity
                                     </th>
                                     <th>
-                                        2nd Personal Influencer
+                                        User's Name
                                     </th>
                                     <th>
-                                        Note Two
+                                        User's Mobile
+                                    </th>
+                                    
+                                    <th>
+                                        Influencer Type
                                     </th>
                                     <th>
-                                        3rd Personal Influencer
+                                        Influencer Name
                                     </th>
                                     <th>
-                                        Note Three
+                                        Note
                                     </th>
                                     <th>
                                         Action
                                     </th>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($user_influencers as $personal)
+                                    @foreach($personal_influencers as $personal)
                                         <tr>
-                                            <td>{{ $personal->user_inf->id }}</td>
-                                            <td>{{ $personal->user_inf->username }}</td>
-                                            <td>{{ $personal->first_per_inf->username }}</td>
-                                            <td>{{ $personal->first_per_influencer_note }}</td>
-                                            <td>{{ $personal->second_per_inf->username }}</td>
-                                            <td>{{ $personal->second_per_influencer_note }}</td>
-                                            <td>{{ $personal->third_per_inf->username }}</td>
-                                            <td>{{ $personal->third_per_influencer_note }}</td>
-                                            <td class="td-actions text-center">
+                                            <td>{{ $personal->id }}</td>
+                                            <td>{{date_format($personal->selection->created_at,"Y-M-d")}}</td>
+                                            <td>{{ $personal->selection->id }}</td>
+                                            <td>{{ $personal->selection->activity_name }}</td>
+                                            <td>{{ $personal->user_inf->first_name }} {{ $personal->user_inf->last_name }}</td>
+                                            <td>{{ $personal->user_inf->mobile }}</td>
+                                            <td>{{ $personal->type->influencer_type }}</td>
+                                            <td>{{ $personal->influencer->first_name }} {{ $personal->influencer->last_name }}</td>
+                                            <td>{{ $personal->influencer_note }}</td>
+                                            <td class="text-primary">
                                               <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
                                                 <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">visibility</i></a>
                                               </button>
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -242,53 +251,56 @@ Users - Circle of Influence
                         <table class="table text-center" id="professional_influencers_table">
                             <thead class="text-primary">
                                 <th>
-                                    ID
+                                    SL.
                                 </th>
                                 <th>
-                                    User
+                                    Date
                                 </th>
                                 <th>
-                                    1st Professional Influencer
+                                    Activity ID
                                 </th>
                                 <th>
-                                    Note One
+                                    Activity
                                 </th>
                                 <th>
-                                    2nd Professional Influencer
+                                    User's Name
                                 </th>
                                 <th>
-                                    Note Two
+                                    User's Mobile
+                                </th>
+                                
+                                <th>
+                                    Influencer Type
                                 </th>
                                 <th>
-                                    3rd Professional Influencer
+                                    Influencer Name
                                 </th>
                                 <th>
-                                    Note Three
+                                    Note
                                 </th>
                                 <th>
                                     Action
                                 </th>
                             </thead>
                             <tbody>
-                                {{-- @foreach($user_influencers as $professional)
+                                @foreach($professional_influencers as $professional)
                                     <tr>
-                                        <td>{{ $professional->user_inf->id }}</td>
-                                        <td>{{ $professional->user_inf->username }}</td>
-                                        <td>{{ $professional->first_pro_inf->username }}</td>
-                                        <td>{{ $professional->first_pro_influencer_note }}</td>
-                                        <td>{{ $professional->second_pro_inf->username }}</td>
-                                        <td>{{ $professional->second_pro_influencer_note }}</td>
-                                        <td>{{ $professional->third_pro_inf->username }}</td>
-                                        <td>{{ $professional->third_pro_influencer_note }}</td>
-                                        <td class="td-actions text-center">
-                                            <button type="button" rel="tooltip"
-                                                title="View User Professional Influencers"
-                                                class="btn btn-primary btn-link btn-sm">
-                                                <a href=""><i class="material-icons">visibility</i></a>
-                                            </button>
+                                        <td>{{ $professional->id }}</td>
+                                        <td>{{date_format($professional->selection->created_at,"Y-M-d")}}</td>
+                                        <td>{{ $professional->selection->id }}</td>
+                                        <td>{{ $professional->selection->activity_name }}</td>
+                                        <td>{{ $professional->user_inf->first_name }} {{ $professional->user_inf->last_name }}</td>
+                                        <td>{{ $professional->user_inf->mobile }}</td>
+                                        <td>{{ $professional->type->influencer_type }}</td>
+                                        <td>{{ $professional->influencer->first_name }} {{ $professional->influencer->last_name }}</td>
+                                        <td>{{ $professional->influencer_note }}</td>
+                                        <td class="text-primary">
+                                          <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
+                                            <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">visibility</i></a>
+                                          </button>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
 
                             </tbody>
                         </table>

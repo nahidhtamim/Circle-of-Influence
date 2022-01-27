@@ -42,7 +42,7 @@ Contact - Circle Of Influence
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message"
+                                    <textarea name="message" rows="6" class="form-control contact-textarea" id="message"
                                         placeholder="Your message..." required=""></textarea>
                                 </fieldset>
                             </div>

@@ -661,10 +661,30 @@ section.contact-me {
     background-color: rgba(250, 250, 250, 0.1);
     border: 1px solid rgba(250, 250, 250, 1);
     border-radius: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: #fff;
     font-size: 14px;
-    height: 100px;
+    height: 60px;
+    max-height: 220px;
+    line-height: 40px;
+    width: 100%;
+    padding-left: 15px;
+    border-radius: 4px;
+}
+
+#contact textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#contact textarea.contact-textarea {
+    background-color: rgba(250, 250, 250, 0.1);
+    border: 1px solid rgba(250, 250, 250, 1);
+    border-radius: 0px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 14px;
+    height: 180px;
     max-height: 220px;
     line-height: 40px;
     width: 100%;
@@ -798,4 +818,14 @@ section.contact-me {
     .isotope-toolbar {
         margin-bottom: 20px;
     }
+}
+
+a.add_row {
+    background: #0f8b5c;
+    border-color: #0f8b5c;
+}
+
+a.add_row:hover {
+    background: #04442c;
+    border-color: #04442c;
 }

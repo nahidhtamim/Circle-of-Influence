@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\User_Influencer;
+use App\Models\Influencer;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -12,37 +12,44 @@ class professionalInfluencerExport implements FromCollection, WithMapping, WithH
 
     public function headings(): array
     {
-        return ["Sl.", "Username", "1st Influencer", "Note", "2nd Influencer", "Note", "3rd Influencer", "Note", "Created At"];
+        return ["Sl.", "Activity ID", "Activity", "Last Name", "First Name", "Mobile", "Address",
+         "Influencer Type", "Influencer Last Name", "Influencer First Name", "Note", "Created At"];
     }
 
-    public function map($user_influencers): array
+    public function map($influencers): array
     {
         return [
-            $user_influencers->id,
-            $user_influencers->user_inf->username,
-            $user_influencers->first_pro_inf->username,
-            $user_influencers->first_pro_influencer_note,
-            $user_influencers->second_pro_inf->username,
-            $user_influencers->second_pro_influencer_note,
-            $user_influencers->third_pro_inf->username,
-            $user_influencers->third_pro_influencer_note,
-            Date($user_influencers->created_at),
-        ];
+            $influencers->id,
+            $influencers->selection->id,
+            $influencers->selection->activity_name,
+            $influencers->user_inf->last_name,
+            $influencers->user_inf->first_name,
+            $influencers->user_inf->mobile,
+            $influencers->user_inf->address,
+            $influencers->type->influencer_type,
+            $influencers->influencer->last_name,
+            $influencers->influencer->first_name,
+            $influencers->influencer_note,
+            date_format($influencers->selection->created_at,"Y-M-d"),    
+        ];     
     }
 
     public function collection()
     {
-        $professional_influencers =  User_Influencer::select(
-            'id',
-            'user_id',
-            'first_pro_influencer',
-            'first_pro_influencer_note',
-            'second_pro_influencer',
-            'second_pro_influencer_note',
-            'third_pro_influencer',
-            'third_pro_influencer_note',
-            'created_at'
-        )->get();
+        $professional_influencers =  Influencer::select(
+            'influencers.id',
+            'influencers.selection_id',
+            'influencers.selection_id',
+            'influencers.user_id',
+            'influencers.user_id',
+            'influencers.user_id',
+            'influencers.user_id',
+            'influencers.type_id',
+            'influencers.influencer_id',
+            'influencers.influencer_id',
+            'influencers.influencer_note',
+            'influencers.created_at',
+            )->where('influencers.type_id', '2')->get();
         
         return $professional_influencers;
     }
