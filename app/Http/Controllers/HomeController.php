@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function pickInfluencer()
     {
         $types = Influencer_Type::all();
-        $users = User::all()->WHERE('role_as', '0')->WHERE('id','!=', Auth::id());
+        $users = User::all()->WHERE('role_as', '0')->WHERE('id','!=', Auth::id())->WHERE('tenant_id','=', Auth::user()->tenant_id);
         return view('frontend.pick_influencers', compact('users', 'types'));
     }
 

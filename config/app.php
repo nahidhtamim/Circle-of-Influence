@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Circle of Influence'),
+    'name' => env('APP_NAME', 'Circle Of Influence'),
 
     /*
     |--------------------------------------------------------------------------

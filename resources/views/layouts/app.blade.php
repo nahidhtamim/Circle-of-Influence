@@ -18,7 +18,10 @@
         body {
             background: linear-gradient(90deg, #0f8b5c 0%, #182848 100%);
         }
-    
+        
+        .email_box{
+            font-size: 14px;
+        }
         .login {
             width: 360px;
             padding: 8% 0 0;

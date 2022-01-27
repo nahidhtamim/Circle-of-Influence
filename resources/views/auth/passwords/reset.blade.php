@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section('title')
+Reset Password - Circle of Influence
+@endsection
 
-                <div class="card-body">
+@section('content')
+
+<div class="login">
+    <div class="form">
+        <div class="email_box">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -57,9 +58,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 @endsection

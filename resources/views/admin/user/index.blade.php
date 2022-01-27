@@ -204,6 +204,9 @@ Users - Circle of Influence
                                         Activity
                                     </th>
                                     <th>
+                                        Tenant
+                                    </th>
+                                    <th>
                                         User's Name
                                     </th>
                                     <th>
@@ -230,6 +233,10 @@ Users - Circle of Influence
                                             <td>{{date_format($personal->selection->created_at,"Y-M-d")}}</td>
                                             <td>{{ $personal->selection->id }}</td>
                                             <td>{{ $personal->selection->activity_name }}</td>
+                                            <td>
+                                                {{$personal->user_inf->tenant_id}}
+                                            </td>
+                                            {{-- <td>{{ $personal->user_inf->tenant_id }}</td> --}}
                                             <td>{{ $personal->user_inf->first_name }} {{ $personal->user_inf->last_name }}</td>
                                             <td>{{ $personal->user_inf->mobile }}</td>
                                             <td>{{ $personal->type->influencer_type }}</td>
@@ -318,6 +325,6 @@ Users - Circle of Influence
                     Professional</a></button>
         </div>
     </div>
-
+</div>
 
     @endsection
