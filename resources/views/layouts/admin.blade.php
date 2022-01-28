@@ -24,7 +24,13 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('admin/css/demo.css') }}" rel="stylesheet" />
 
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.14/d3.js"></script>
+
+    <script src="{{ asset('admin/js/core/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    
 
 </head>
 <body class="">
@@ -60,13 +66,10 @@
 
 
     <!--   Core JS Files   -->
-
-    <script src="{{ asset('admin/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-
+    
     <!--  Plugin for Sweet Alert -->
     <script src="{{ asset('admin/js/plugins/sweetalert2.js') }}"></script>
 
@@ -97,5 +100,7 @@
 
       </script>
  
+ 
+
 </body>
 </html>

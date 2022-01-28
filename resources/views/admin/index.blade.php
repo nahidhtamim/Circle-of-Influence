@@ -6,249 +6,188 @@ Dashboard - Circle of Influence
 
 @section('contents')
 
-<div class="card">
+<style>
 
+    .card-body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    }
+    .node-label {
+    pointer-events: none;
+    font: 15px sans-serif;
+    color: #000000;
+    text-anchor: middle;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    }
+    .node {
+    transition: fill 0.3s ease-in-out, r 0.3s ease-in-out;
+    }
+    .node:hover {
+    fill:  #942ca78e;
+    r: 90;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-chart card-header-primary">
+          <div class="ct-chart text-center" id="dailySalesChart">
+              <h3>A Graphical View of the list of User's Influencers</h3>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
-    var w = 600,
-        h = 600,
-        circleWidth = 2;
+    var graph = 
+      {
+        "nodes": <?= $nodes ?>,
+        "links": <?= $links ?>, 
+        // [
+        //   {"source": "nhtamim", "target": "nhtamim", "value": 1},
+        //  ]
+      };
 
+      var wid = $('body').width();
+      var hit = $('body').height();
 
-    var palette = {
-        "lightgray": "#E5E8E8",
-        "gray": "#708284",
-        "mediumgray": "#536870",
-        "blue": "#3B757F"
-    }
+      var mapOptions = {
+        width: wid,
+        height: hit,
+        nodeRadius: 40,
+        nodeStroke: '#16a085',
+        nodeStrokeWidth: 2,
+        getColor: function(group) {
+          return (group == 1) ? '#34495e' : '#ffffff'; 
+        }
+      };
 
-    var colors = d3.scale.category20();
-
-    var nodes = [{
-            name: "Skills",
-            value: 10
-        },
-        {
-            name: "HTML5",
-            target: [0],
-            value: 10
-        },
-        {
-            name: "CSS3",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Scss",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Compass",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Susy",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Breakpoints",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "jQuery",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Javascript",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "PHP",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Wordpress",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Git",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Snap.svg",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "d3",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Gulp",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "AngularJS",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Adobe CS",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "mySql",
-            target: [1],
-            value: 10
-        },
-        {
-            name: "Grunt",
-            target: [1],
-            value: 10
-        },
-    ];
-
-    var links = [];
-
-    for (var i = 0; i < nodes.length; i++) {
-        if (nodes[i].target !== undefined) {
-            for (var x = 0; x < nodes[i].target.length; x++)
-                links.push({
-                    source: nodes[i],
-                    target: nodes[nodes[i].target[x]]
-                });
-        };
-    };
-
-
-    var myChart = d3.select('.card')
-        .append("div")
-        .classed("svg-container", true)
-
+      // initialize svg
+      var svg = d3.select('.card-body')
         .append('svg')
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 600 800")
-        .classed("svg-content-responsive", true)
+        .attr('width', mapOptions.width)
+        .attr('height', mapOptions.height);
+
+      // provide collide force to keep nodes from overlapping
+      var collide = d3.forceCollide(mapOptions.nodeRadius*1.5);
+
+      // force simulation
+      var simulation = d3.forceSimulation()
+          .force("link", d3.forceLink().id(function(d) { return d.id; }))
+          .force("charge", d3.forceManyBody())
+          .force("center", d3.forceCenter(mapOptions.width / 2, mapOptions.height / 2))
+          .force("collide", collide);
+
+      // add links
+      var link = svg.append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(graph.links)
+          .enter().append("line")
+            .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
+            .attr("stroke", 'black');
+        
+      // add nodes
+      var node = svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("circle")
+        .data(graph.nodes)
+        .enter().append("circle")
+          .attr('class', 'node')
+          .attr('stroke', mapOptions.nodeStroke)
+          .attr('stroke-width', mapOptions.nodeStrokeWidth)
+          .attr("r", mapOptions.nodeRadius)
+          .attr("fill", function(d) { return mapOptions.getColor(d.group); })
+          .call(d3.drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended));
+        
+      // add node labels
+      var texts = svg.selectAll('text.node-label')
+        .data(graph.nodes)
+        .enter().append('text')
+        .attr('class', 'node-label')
+        .attr('fill', 'black')
+        .attr('dy', '0.15em')
+        .text(function(d) { return d.id; });
+
+      // add tick function
+      simulation
+          .nodes(graph.nodes)
+          .on("tick", ticked);
+
+      // add link forces
+      simulation.force("link")
+          .links(graph.links);
 
 
-    var force = d3.layout.force()
-        .nodes(nodes)
-        .links([])
-        .gravity(0.1)
-        .charge(-600)
-        .size([w, h]);
 
-    var link = myChart.selectAll('line')
-        .data(links).enter().append('line')
-        .attr('stroke', palette.lightgray)
-        .attr('strokewidth', '1');
+      function ticked() {
 
-    var node = myChart.selectAll('circle')
-        .data(nodes).enter()
-        .append('g')
-        .call(force.drag);
+        link.attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 
+        node.attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
 
-    node.append('circle')
-        .attr('cx', function (d) {
-            return d.x;
-        })
-        .attr('cy', function (d) {
-            return d.y;
-        })
-        .attr('r', function (d, i) {
-            console.log(d.value);
-            if (i > 0) {
-                return circleWidth + d.value;
-            } else {
-                return circleWidth + 35;
-            }
-        })
-        .attr('fill', function (d, i) {
-            if (i > 0) {
-                return colors(i);
-            } else {
-                return '#fff';
-            }
-        })
-        .attr('strokewidth', function (d, i) {
-            if (i > 0) {
-                return '0';
-            } else {
-                return '2';
-            }
-        })
-        .attr('stroke', function (d, i) {
-            if (i > 0) {
-                return '';
-            } else {
-                return 'black';
-            }
-        });
-
-
-    force.on('tick', function (e) {
-        node.attr('transform', function (d, i) {
-            return 'translate(' + d.x + ',' + d.y + ')'
-        })
-
-        link
-            .attr('x1', function (d) {
-                return d.source.x;
+        texts.attr('transform', function(d) {
+              return 'translate(' + d.x + ',' + d.y + ')';
             })
-            .attr('y1', function (d) {
-                return d.source.y;
-            })
-            .attr('x2', function (d) {
-                return d.target.x;
-            })
-            .attr('y2', function (d) {
-                return d.target.y;
-            })
-    });
+      }
 
+      function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
 
-    node.append('text')
-        .text(function (d) {
-            return d.name;
-        })
-        .attr('font-family', 'Raleway', 'Helvetica Neue, Helvetica')
-        .attr('fill', function (d, i) {
-            console.log(d.value);
-            if (i > 0 && d.value < 10) {
-                return palette.mediumgray;
-            } else if (i > 0 && d.value > 10) {
-                return palette.lightgray;
-            } else {
-                return palette.blue;
-            }
-        })
-        .attr('text-anchor', function (d, i) {
-            return 'middle';
-        })
-        .attr('font-size', function (d, i) {
-            if (i > 0) {
-                return '.5em';
-            } else {
-                return '.5em';
-            }
-        })
+      function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
 
-    force.start();
-
-</script>
+      function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+  </script>
 
 @endsection

@@ -21,19 +21,20 @@ class UserController extends Controller
         
     }
 
-    public function updateUserTenant($id, Request $request)
-    {
-        $user_tenant = User::find($id);
-        $user_tenant->tenant_id = $request->input('tenant_id');
-        $user_tenant->update();
-        return redirect('/users')->with('status', 'User Tenant Updated Successfully');
-    }
+    // public function updateUserTenant($id, Request $request)
+    // {
+    //     $user_tenant = User::find($id);
+    //     $user_tenant->tenant_id = $request->input('tenant_id');
+    //     $user_tenant->update();
+    //     return redirect('/users')->with('status', 'User Tenant Updated Successfully');
+    // }
 
 
     public function editUser($id)
     {
         $user = User::find($id);
-        return view('admin.user.editUser',compact('user'));
+        $tenants = Tenant::all()->where('tenant_status', '!=', 0);
+        return view('admin.user.editUser',compact('user', 'tenants'));
     }
 
     public function updateUser($id, Request $request)
@@ -45,6 +46,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->mobile = $request->input('mobile');
         $user->address = $request->input('address');
+        $user->tenant_id = $request->input('tenant_id');
+        $user->role_as = $request->input('role_as') == TRUE ? '1':'0';
         $user->update();
         return redirect('/users')->with('status', 'User Updated Successfully');
     }
@@ -56,18 +59,18 @@ class UserController extends Controller
         return redirect('/users')->with('status', 'User Deleted Successfully');
     }
 
-    public function updateUserRole($id)
-    {
-        $user = User::find($id);
-        if($user->role_as =='1'){
-            $user->role_as = '0';
-        }
-        elseif($user->role_as =='0'){
-            $user->role_as = '1';
-        }
-        $user->update();
-        return redirect('/users')->with('status', 'User Role Updated Successfully');
-    }
+    // public function updateUserRole($id)
+    // {
+    //     $user = User::find($id);
+    //     if($user->role_as =='1'){
+    //         $user->role_as = '0';
+    //     }
+    //     elseif($user->role_as =='0'){
+    //         $user->role_as = '1';
+    //     }
+    //     $user->update();
+    //     return redirect('/users')->with('status', 'User Role Updated Successfully');
+    // }
 
 
     // public function UserInfluencer()

@@ -101,32 +101,35 @@ Users - Circle of Influence
                                             {{-- User Role --}}
                                             @if($user->role_as == 1)
                                                 <td class="text-primary">
-                                                    Admin<button rel="tooltip" title="Swap User Role"
+                                                    Admin
+                                                    {{-- <button rel="tooltip" title="Swap User Role"
                                                         class="btn btn-primary btn-link btn-sm" data-toggle="modal"
                                                         data-target="#exampleModal">
                                                         <a
                                                             href="{{ url('change-user-role/'.$user->id) }}"><i
-                                                                class="material-icons">published_with_changes</i></button></a>
+                                                                class="material-icons">published_with_changes</i></button></a> --}}
                                                 </td>
                                             @else
                                                 <td class="text-success">
-                                                    Influencer<button rel="tooltip" title="Swap User Role"
+                                                    Influencer
+                                                    {{-- <button rel="tooltip" title="Swap User Role"
                                                         class="btn btn-primary btn-link btn-sm" data-toggle="modal"
                                                         data-target="#exampleModal">
                                                         <a
                                                             href="{{ url('change-user-role/'.$user->id) }}"><i
-                                                                class="material-icons">published_with_changes</i></button></a>
+                                                                class="material-icons">published_with_changes</i></button></a> --}}
                                                 </td>
                                             @endif
                                             {{-- User Tenant -- --}}
                                             <td class="text-primary">
-                                                {{ $user->userTenant->tenant_name }}<button rel="tooltip"
+                                                {{ $user->userTenant->tenant_name }}
+                                                {{-- <button rel="tooltip"
                                                     title="Edit User Tenant" class="btn btn-primary btn-link btn-sm"
                                                     data-toggle="modal" data-target="#exampleModal">
-                                                    <i class="material-icons">edit</i></button>
+                                                    <i class="material-icons">edit</i></button> --}}
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -166,7 +169,7 @@ Users - Circle of Influence
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
                                             </td>

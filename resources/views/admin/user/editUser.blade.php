@@ -53,6 +53,24 @@ Edit User - Circle of Influence
                           <input type="text" class="form-control" name="address" value="{{$user->address}}">
                         </div>
                       </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Tenant</label>
+                            <select id="inputState" class="form-control" name="tenant_id">
+                                @foreach($tenants as $tenant)
+                                    <option value="{{ $tenant->id }}">
+                                        {{ $tenant->tenant_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="">Role (Click on checkbox to give user the administrative rights)</label>
+                            <input type="checkbox" class="form-control" name="role_as" {{$user->role_as == "1" ? 'checked':''}}>
+                        </div>
+                      </div>
                   </div>
                   <button type="submit" class="btn btn-primary pull-right">Update</button>
                   <div class="clearfix"></div>
