@@ -21,13 +21,6 @@ class UserController extends Controller
         
     }
 
-    // public function updateUserTenant($id, Request $request)
-    // {
-    //     $user_tenant = User::find($id);
-    //     $user_tenant->tenant_id = $request->input('tenant_id');
-    //     $user_tenant->update();
-    //     return redirect('/users')->with('status', 'User Tenant Updated Successfully');
-    // }
 
 
     public function editUser($id)
@@ -58,25 +51,5 @@ class UserController extends Controller
         $user->delete();
         return redirect('/users')->with('status', 'User Deleted Successfully');
     }
-
-    // public function updateUserRole($id)
-    // {
-    //     $user = User::find($id);
-    //     if($user->role_as =='1'){
-    //         $user->role_as = '0';
-    //     }
-    //     elseif($user->role_as =='0'){
-    //         $user->role_as = '1';
-    //     }
-    //     $user->update();
-    //     return redirect('/users')->with('status', 'User Role Updated Successfully');
-    // }
-
-
-    // public function UserInfluencer()
-    // {
-    //     $user_influencers = User_Influencer::find();
-    //     return view('admin.user.editUser',compact('user'));
-    // }
 
 }

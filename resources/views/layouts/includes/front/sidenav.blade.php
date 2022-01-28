@@ -51,7 +51,7 @@
                     <br>
 
                     <li>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i
+                        <a href="{{url('view-profile/'.Auth::id())}}" data-toggle="tooltip" data-placement="top" title="Profile"><i
                                 class="fa fa-user"></i></a>
                     </li>
                     <li>

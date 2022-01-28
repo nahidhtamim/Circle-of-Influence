@@ -10,7 +10,7 @@ use App\Models\Selection;
 use App\Models\Influencer_Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -67,5 +67,32 @@ class HomeController extends Controller
 
         return view('frontend.history', compact('influencers'));
 
+    }
+
+    public function profile($id)
+    {
+        $profile = User::find($id);
+
+        return view('frontend.profile', compact('profile'));
+
+    }
+
+    public function updateProfile($id, Request $request)
+    {
+        $profile = User::find($id);
+        $profile->first_name = $request->input('first_name');
+        $profile->last_name = $request->input('last_name');
+        $profile->mobile = $request->input('mobile');
+        $profile->address = $request->input('address');
+        $profile->update();
+        return redirect('/')->with('status', 'User Updated Successfully');
+    }
+
+    public function updatePassword($id, Request $request)
+    {
+        $profile = User::find($id);
+        $profile->password = Hash::make($request->input('password'));
+        $profile->update();
+        return redirect('/')->with('status', 'User Updated Successfully');
     }
 }

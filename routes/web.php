@@ -31,9 +31,7 @@ Route::get('/contact', function () {
 });
 
 
-
 Auth::routes();
-
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -41,6 +39,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/pick-influencers', [HomeController::class, 'pickInfluencer']);
     Route::post('/save-influencers', [HomeController::class, 'saveInfluencers']);
     Route::get('/influencer-history', [HomeController::class, 'influencer_history']);
+    Route::get('/view-profile/{id}', [HomeController::class, 'profile']);
+    Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile']);
+    Route::post('/update-password/{id}', [HomeController::class, 'updatePassword']);
 });
 
 //verifying email
@@ -82,8 +83,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::get('/users',[UserController::class, 'index']);
     Route::get('edit-user/{id}',[UserController::class, 'editUser']);
     Route::post('update-user/{id}',[UserController::class, 'updateUser']);
-    Route::post('update-user-tenant/{id}',[UserController::class, 'updateUserTenant']);
-    Route::post('change-user-role/{id}',[UserController::class, 'chaneUserTenant']);
+    // Route::post('update-user-tenant/{id}',[UserController::class, 'updateUserTenant']);
+    // Route::post('change-user-role/{id}',[UserController::class, 'chaneUserTenant']);
 
     //Influencer Type Controllers
     Route::get('/influencer-types',[InfluencerTypeController::class, 'index']);
@@ -95,8 +96,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
 
     //User Influencers Controllers
-    Route::get('/user-influencers',[UserInfluencerController::class, 'index']);
-    Route::get('user-influencer/{id}',[UserInfluencerController::class, 'viewUserInfluencer']);
-    Route::get('/user-influencers/export-personal',[UserInfluencerController::class, 'exportCsvPerosnal']);
-    Route::get('/user-influencers/export-professional',[UserInfluencerController::class, 'exportCsvProfessional']);
+    // Route::get('/user-influencers',[UserInfluencerController::class, 'index']);
+    // Route::get('user-influencer/{id}',[UserInfluencerController::class, 'viewUserInfluencer']);
+    // Route::get('/user-influencers/export-personal',[UserInfluencerController::class, 'exportCsvPerosnal']);
+    // Route::get('/user-influencers/export-professional',[UserInfluencerController::class, 'exportCsvProfessional']);
  });
