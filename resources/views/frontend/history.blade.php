@@ -17,68 +17,47 @@ Activity History - Circle Of Influence
         </div>
         <div class="row">
             <div class="col-md-12">
-            <h3 class="text-center">List of Personal Influencers</h3>
+            <h3 class="text-center">List of Influencers</h3>
                 <hr>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">1st Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">2nd Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">3rd Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">Created At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($influencers as $influencer)    
-                        <tr>
-                            <th scope="row">{{$influencer->id}}</th>
-                            <td>{{$influencer->first_per_inf->username}}</td>
-                            <td>{{$influencer->first_per_influencer_note}}</td>
-                            <td>{{$influencer->second_per_inf->username}}</td>
-                            <td>{{$influencer->second_per_influencer_note}}</td>
-                            <td>{{$influencer->third_per_inf->username}}</td>
-                            <td>{{$influencer->third_per_influencer_note}}</td>
-                            <td>{{$influencer->created_at->format('d-M-Y') }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-12">
-            <h3 class="text-center">List of Professional Influencers</h3>
-                <hr>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">1st Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">2nd Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">3rd Influencer</th>
-                            <th scope="col">Note</th>
-                            <th scope="col">Created At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($influencers as $influencer)    
-                        <tr>
-                            <th scope="row">{{$influencer->id}}</th>
-                            <td>{{$influencer->first_pro_inf->username}}</td>
-                            <td>{{$influencer->first_pro_influencer_note}}</td>
-                            <td>{{$influencer->second_pro_inf->username}}</td>
-                            <td>{{$influencer->second_pro_influencer_note}}</td>
-                            <td>{{$influencer->third_pro_inf->username}}</td>
-                            <td>{{$influencer->third_pro_influencer_note}}</td>
-                            <td>{{$influencer->created_at->format('d-M-Y') }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table text-center" id="influencers">
+                      <thead class="">
+                            <tr>
+                                <th>
+                                    Activity
+                                </th>
+                                
+                                <th>
+                                    Activity ID
+                                </th>                       
+                                <th>
+                                    Influencer Type
+                                </th>
+                                <th>
+                                    Influencer Name
+                                </th>
+                                <th>
+                                    Note
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($influencers as $influencer)
+                                <tr>
+                                    <td>{{ $influencer->selection->activity_name }}</td>
+                                    <td>{{ $influencer->influencer_no }}</td>
+                                    <td>{{ $influencer->type->influencer_type }}</td>
+                                    <td>{{ $influencer->influencer->first_name }} {{ $influencer->influencer->last_name }}</td>
+                                    <td>{{ $influencer->influencer_note }}</td>
+                                    <td>{{date_format($influencer->selection->created_at,"Y-M-d")}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

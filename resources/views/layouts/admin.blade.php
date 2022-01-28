@@ -24,6 +24,8 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('admin/css/demo.css') }}" rel="stylesheet" />
 
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.14/d3.js"></script>
+
 </head>
 <body class="">
     <div class="wrapper ">
