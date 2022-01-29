@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tenant;
-use App\Models\Influencer;
+use App\Mail\ContactMail;
 use App\Models\Selection;
+use App\Models\Influencer;
+use Illuminate\Http\Request;
 use App\Models\Influencer_Type;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -43,8 +45,7 @@ class HomeController extends Controller
         $influencer_id = $request->influencer_id;
         $influencer_note = $request->influencer_note;
         // $selection_id = $$selection->id;
-        $influencer_no = $request->influencer_no;
-
+        $influencer_no = 1;
         for($i = 0; $i < count($influencer_id); $i++){
             $datasave = [
                 'user_id' => Auth::id(),
@@ -52,9 +53,10 @@ class HomeController extends Controller
                 'influencer_id' => $influencer_id[$i],
                 'influencer_note' => $influencer_note[$i],
                 'selection_id' => $selection->id,
-                'influencer_no' => $i,
+                'influencer_no' => $influencer_no,
             ];
             DB::table('influencers')->insert($datasave);
+            $influencer_no++;
         }
 
         return redirect('/')->with('status', 'Data has been submitted Successfully');
@@ -94,5 +96,19 @@ class HomeController extends Controller
         $profile->password = Hash::make($request->input('password'));
         $profile->update();
         return redirect('/')->with('status', 'User Updated Successfully');
+    }
+
+
+    public function contactMail(Request $request)
+    {
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
+        ];
+
+        Mail::to('forfreelaning101@gmail.com')->send(new ContactMail($details));
+        return redirect('/')->with('status', 'Your Message Has Been Sent Successfully!');
     }
 }

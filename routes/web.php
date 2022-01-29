@@ -31,6 +31,7 @@ Route::get('/contact', function () {
 });
 
 
+
 Auth::routes();
 
 
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/view-profile/{id}', [HomeController::class, 'profile']);
     Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile']);
     Route::post('/update-password/{id}', [HomeController::class, 'updatePassword']);
+    Route::post('/send-mail', [HomeController::class, 'contactMail']);
 });
 
 //verifying email

@@ -20,7 +20,8 @@ Contact - Circle Of Influence
         <div class="row">
             <div class="right-content">
                 <div class="container">
-                    <form id="contact" action="" method="post">
+                    <form id="contact" action="{{ url('/send-mail') }}" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset>
@@ -36,7 +37,7 @@ Contact - Circle Of Influence
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <input name="subject" type="text" class="form-control" id="subject"
+                                    <input name="phone" type="text" class="form-control" id="subject"
                                         placeholder="Subject..." required="" />
                                 </fieldset>
                             </div>

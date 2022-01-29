@@ -49,6 +49,7 @@
     <script src="{{ asset('frontend/js/isotope.min.js') }}"></script>
     <script src="{{ asset('frontend/js/owl-carousel.js') }}"></script>
     <script src="{{ asset('frontend/js/lightbox.js') }}"></script>
+    <script src="{{ asset('frontend/js/sweetalert2.js') }}"></script>
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
   <script> 
     $(document).ready(function(){

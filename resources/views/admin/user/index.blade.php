@@ -207,6 +207,9 @@ Users - Circle of Influence
                                         Activity
                                     </th>
                                     <th>
+                                        Activity Item
+                                    </th>
+                                    <th>
                                         Tenant
                                     </th>
                                     <th>
@@ -236,6 +239,7 @@ Users - Circle of Influence
                                             <td>{{date_format($personal->selection->created_at,"Y-M-d")}}</td>
                                             <td>{{ $personal->selection->id }}</td>
                                             <td>{{ $personal->selection->activity_name }}</td>
+                                            <td>{{ $personal->influencer_no }}</td>
                                             <td>
                                                 {{$personal->user_inf->tenant_id}}
                                             </td>
@@ -273,6 +277,9 @@ Users - Circle of Influence
                                     Activity
                                 </th>
                                 <th>
+                                    Activity Item
+                                </th>
+                                <th>
                                     User's Name
                                 </th>
                                 <th>
@@ -299,6 +306,7 @@ Users - Circle of Influence
                                         <td>{{date_format($professional->selection->created_at,"Y-M-d")}}</td>
                                         <td>{{ $professional->selection->id }}</td>
                                         <td>{{ $professional->selection->activity_name }}</td>
+                                        <td>{{ $professional->influencer_no }}</td>
                                         <td>{{ $professional->user_inf->first_name }} {{ $professional->user_inf->last_name }}</td>
                                         <td>{{ $professional->user_inf->mobile }}</td>
                                         <td>{{ $professional->type->influencer_type }}</td>
