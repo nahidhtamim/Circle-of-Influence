@@ -98,8 +98,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
 
     //User Influencers Controllers
-    // Route::get('/user-influencers',[UserInfluencerController::class, 'index']);
-    // Route::get('user-influencer/{id}',[UserInfluencerController::class, 'viewUserInfluencer']);
-    // Route::get('/user-influencers/export-personal',[UserInfluencerController::class, 'exportCsvPerosnal']);
-    // Route::get('/user-influencers/export-professional',[UserInfluencerController::class, 'exportCsvProfessional']);
+    Route::get('/user-influencers',[UserInfluencerController::class, 'index']);
+    Route::get('user-influencer/{id}',[UserInfluencerController::class, 'viewUserInfluencer']);
+    Route::get('/user-influencers/export-personal',[UserInfluencerController::class, 'exportCsvPerosnal']);
+    Route::get('/user-influencers/export-professional',[UserInfluencerController::class, 'exportCsvProfessional']);
  });

@@ -12,7 +12,7 @@ class professionalInfluencerExport implements FromCollection, WithMapping, WithH
 
     public function headings(): array
     {
-        return ["Sl.", "Activity ID", "Activity", "Last Name", "First Name", "Mobile", "Address",
+        return ["Sl.", "Activity", "Influencer No", "Last Name", "First Name", "Mobile", "Address",
          "Influencer Type", "Influencer Last Name", "Influencer First Name", "Note", "Created At"];
     }
 
@@ -20,8 +20,8 @@ class professionalInfluencerExport implements FromCollection, WithMapping, WithH
     {
         return [
             $influencers->id,
-            $influencers->selection->id,
             $influencers->selection->activity_name,
+            $influencers->influencer_no,
             $influencers->user_inf->last_name,
             $influencers->user_inf->first_name,
             $influencers->user_inf->mobile,
@@ -38,7 +38,7 @@ class professionalInfluencerExport implements FromCollection, WithMapping, WithH
     {
         $professional_influencers =  Influencer::select(
             'influencers.id',
-            'influencers.selection_id',
+            'influencers.influencer_no',
             'influencers.selection_id',
             'influencers.user_id',
             'influencers.user_id',
