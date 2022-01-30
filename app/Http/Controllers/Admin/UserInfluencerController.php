@@ -11,19 +11,13 @@ use App\Exports\personalInfluencerExport;
 use App\Exports\professionalInfluencerExport;
 
 
-
-
-
 class UserInfluencerController extends Controller
 {
     public function personalInfluencers(){
         $users = User::all();
-        // $users = User::with('user_tenant')->get();
         $tenants = Tenant::all()->where('tenant_status', '!=', 0);
         return view('admin.user.index', compact('users', 'tenants'));
     }
-
-
 
 
     public function exportCsvPerosnal(){

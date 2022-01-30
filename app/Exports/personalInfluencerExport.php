@@ -12,7 +12,7 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
 
     public function headings(): array
     {
-        return ["Sl.", "Activity", "Influencer No", "Last Name", "First Name", "Mobile", "Address",
+        return ["Sl.", "Activity", "Influencer No", "Last Name", "First Name","Tenant", "Mobile", "Address",
          "Influencer Type", "Influencer Last Name", "Influencer First Name", "Note", "Created At"];
     }
 
@@ -24,6 +24,7 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
             $influencers->influencer_no,
             $influencers->user_inf->last_name,
             $influencers->user_inf->first_name,
+            $influencers->tenant->tenant_name,
             $influencers->user_inf->mobile,
             $influencers->user_inf->address,
             $influencers->type->influencer_type,
@@ -42,6 +43,7 @@ class personalInfluencerExport implements FromCollection, WithMapping, WithHeadi
                         'influencers.selection_id',
                         'influencers.user_id',
                         'influencers.user_id',
+                        'influencers.tenant_id',
                         'influencers.user_id',
                         'influencers.user_id',
                         'influencers.type_id',

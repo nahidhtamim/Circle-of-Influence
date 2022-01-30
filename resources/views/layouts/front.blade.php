@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/lightbox.css') }}" />
     <!-- DataTables CSS Files -->
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+  
+
 
 </head>
 
@@ -42,10 +44,18 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+    <script>
+          $(document).ready( function () {
+              $('#influencers').DataTable({
+                "pagingType": "full_numbers"
+              } );
+          } );
+
+      </script>
+        
+
     <script src="{{ asset('frontend/js/isotope.min.js') }}"></script>
     <script src="{{ asset('frontend/js/owl-carousel.js') }}"></script>
     <script src="{{ asset('frontend/js/lightbox.js') }}"></script>
@@ -71,13 +81,12 @@
       });
     });
   </script> 
-  <script>
-    $(document).ready( function () {
-        $('#influencers').DataTable({
-         "pagingType": "full_numbers"
-        });
-    });
-</script>
+  
+    @if(session('status'))
+        <script>
+          swal("{{session('status')}}")
+        </script>
+      @endif
 </body>
 
 </html>

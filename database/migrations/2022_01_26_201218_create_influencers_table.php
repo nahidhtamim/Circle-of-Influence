@@ -17,6 +17,7 @@ class CreateInfluencersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('type_id')->constrained('influencer_types');
+            $table->foreignId('tenant_id')->constrained('tenants');
             $table->foreignId('influencer_id')->constrained('users');
             $table->string('influencer_note');
             $table->foreignId('selection_id')->constrained('selections');

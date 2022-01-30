@@ -15,7 +15,6 @@ class UserController extends Controller
         $users = User::all();
         $personal_influencers = Influencer::where('type_id', '1')->get();
         $professional_influencers = Influencer::where('type_id', '2')->get();
-        // $users = User::with('user_tenant')->get();
         $tenants = Tenant::all()->where('tenant_status', '!=', 0);
         return view('admin.user.index', compact('users', 'tenants', 'personal_influencers', 'professional_influencers'));
         

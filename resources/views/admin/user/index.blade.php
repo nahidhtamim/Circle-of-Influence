@@ -208,12 +208,12 @@ Users - Circle of Influence
                                     </th>
                                     <th>
                                         Activity Item
+                                    </th>                                  
+                                    <th>
+                                        User's Name
                                     </th>
                                     <th>
                                         Tenant
-                                    </th>
-                                    <th>
-                                        User's Name
                                     </th>
                                     <th>
                                         User's Mobile
@@ -240,11 +240,8 @@ Users - Circle of Influence
                                             <td>{{ $personal->selection->id }}</td>
                                             <td>{{ $personal->selection->activity_name }}</td>
                                             <td>{{ $personal->influencer_no }}</td>
-                                            <td>
-                                                {{$personal->user_inf->tenant_id}}
-                                            </td>
-                                            {{-- <td>{{ $personal->user_inf->tenant_id }}</td> --}}
                                             <td>{{ $personal->user_inf->first_name }} {{ $personal->user_inf->last_name }}</td>
+                                            <td>{{$personal->tenant->tenant_name}}</td>
                                             <td>{{ $personal->user_inf->mobile }}</td>
                                             <td>{{ $personal->type->influencer_type }}</td>
                                             <td>{{ $personal->influencer->first_name }} {{ $personal->influencer->last_name }}</td>
@@ -283,6 +280,9 @@ Users - Circle of Influence
                                     User's Name
                                 </th>
                                 <th>
+                                    Tenant
+                                </th>
+                                <th>
                                     User's Mobile
                                 </th>
                                 
@@ -308,6 +308,7 @@ Users - Circle of Influence
                                         <td>{{ $professional->selection->activity_name }}</td>
                                         <td>{{ $professional->influencer_no }}</td>
                                         <td>{{ $professional->user_inf->first_name }} {{ $professional->user_inf->last_name }}</td>
+                                        <td>{{ $professional->tenant->tenant_name }}</td>
                                         <td>{{ $professional->user_inf->mobile }}</td>
                                         <td>{{ $professional->type->influencer_type }}</td>
                                         <td>{{ $professional->influencer->first_name }} {{ $professional->influencer->last_name }}</td>

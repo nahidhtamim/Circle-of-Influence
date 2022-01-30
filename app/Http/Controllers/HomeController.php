@@ -50,6 +50,7 @@ class HomeController extends Controller
             $datasave = [
                 'user_id' => Auth::id(),
                 'type_id' => $type_id[$i],
+                'tenant_id' => Auth::user()->tenant_id,
                 'influencer_id' => $influencer_id[$i],
                 'influencer_note' => $influencer_note[$i],
                 'selection_id' => $selection->id,
@@ -109,6 +110,6 @@ class HomeController extends Controller
         ];
 
         Mail::to('forfreelaning101@gmail.com')->send(new ContactMail($details));
-        return redirect('/')->with('status', 'Your Message Has Been Sent Successfully!');
+        return redirect()->back()->with('status', 'Your Message Has Been Sent Successfully!');
     }
 }

@@ -20,43 +20,53 @@ Activity History - Circle Of Influence
             <h3 class="text-center">List of Influencers</h3>
                 <hr>
                 <div class="table-responsive">
+                    @if (count($influencers) !=0)
                     <table class="table text-center" id="influencers">
-                      <thead class="">
-                            <tr>
-                                <th>
-                                    Activity
-                                </th>
-                                
-                                <th>
-                                    Activity ID
-                                </th>                       
-                                <th>
-                                    Influencer Type
-                                </th>
-                                <th>
-                                    Influencer Name
-                                </th>
-                                <th>
-                                    Note
-                                </th>
-                                <th>
-                                    Date
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($influencers as $influencer)
-                                <tr>
-                                    <td>{{ $influencer->selection->activity_name }}</td>
-                                    <td>{{ $influencer->influencer_no }}</td>
-                                    <td>{{ $influencer->type->influencer_type }}</td>
-                                    <td>{{ $influencer->influencer->first_name }} {{ $influencer->influencer->last_name }}</td>
-                                    <td>{{ $influencer->influencer_note }}</td>
-                                    <td>{{date_format($influencer->selection->created_at,"Y-M-d")}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                        <thead class="">
+                              <tr>
+                                  <th>
+                                      Activity
+                                  </th>
+                                  
+                                  <th>
+                                      Activity ID
+                                  </th>                       
+                                  <th>
+                                      Influencer Type
+                                  </th>
+                                  <th>
+                                      Influencer Name
+                                  </th>
+                                  <th>
+                                      Note
+                                  </th>
+                                  <th>
+                                      Date
+                                  </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach($influencers as $influencer)
+                                  <tr>
+                                      <td>{{ $influencer->selection->activity_name }}</td>
+                                      <td>{{ $influencer->influencer_no }}</td>
+                                      <td>{{ $influencer->type->influencer_type }}</td>
+                                      <td>{{ $influencer->influencer->first_name }} {{ $influencer->influencer->last_name }}</td>
+                                      <td>{{ $influencer->influencer_note }}</td>
+                                      <td>{{date_format($influencer->selection->created_at,"Y-M-d")}}</td>
+                                  </tr>
+                              @endforeach
+                          </tbody>
+                      </table>
+                    @else
+                    <div class="card text-center text-dark">
+                        <div class="card-header">
+                            <h3>No data available</h3>
+                        </div>
+                    </div>
+                   
+                    @endif
+                    
                 </div>
             </div>
         </div>

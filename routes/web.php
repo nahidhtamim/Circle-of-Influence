@@ -31,7 +31,6 @@ Route::get('/contact', function () {
 });
 
 
-
 Auth::routes();
 
 
@@ -44,6 +43,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile']);
     Route::post('/update-password/{id}', [HomeController::class, 'updatePassword']);
     Route::post('/send-mail', [HomeController::class, 'contactMail']);
+
 });
 
 //verifying email
@@ -80,13 +80,10 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::post('update-tenant/{id}',[TenantController::class, 'updateTenant']);
     Route::get('delete-tenant/{id}',[TenantController::class, 'deleteTenant']);
 
-
     //User Controllers
     Route::get('/users',[UserController::class, 'index']);
     Route::get('edit-user/{id}',[UserController::class, 'editUser']);
     Route::post('update-user/{id}',[UserController::class, 'updateUser']);
-    // Route::post('update-user-tenant/{id}',[UserController::class, 'updateUserTenant']);
-    // Route::post('change-user-role/{id}',[UserController::class, 'chaneUserTenant']);
 
     //Influencer Type Controllers
     Route::get('/influencer-types',[InfluencerTypeController::class, 'index']);
@@ -95,7 +92,6 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::get('edit-influencer-type/{id}',[InfluencerTypeController::class, 'editInfluencerType']);
     Route::post('update-influencer-type/{id}',[InfluencerTypeController::class, 'updateInfluencerType']);
     Route::get('delete-influencer-type/{id}',[InfluencerTypeController::class, 'deleteInfluencerType']);
-
 
     //User Influencers Controllers
     Route::get('/user-influencers',[UserInfluencerController::class, 'index']);

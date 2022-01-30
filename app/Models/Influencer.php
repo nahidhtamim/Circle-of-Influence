@@ -14,6 +14,7 @@ class Influencer extends Model
     protected $fillable = [
         'user_id',
         'type_id',
+        'tenant_id',
         'influencer_id',
         'influencer_note',
         'selection_id',
@@ -33,6 +34,11 @@ class Influencer extends Model
     public function influencer()
     {
         return $this->belongsTo(User::class,'influencer_id','id');
+    }
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class,'tenant_id','id');
     }
 
     public function selection()

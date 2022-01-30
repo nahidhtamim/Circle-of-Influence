@@ -37,13 +37,6 @@ Dashboard - Circle of Influence
 
 
 
-
-
-
-
-
-
-
 <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -64,22 +57,11 @@ Dashboard - Circle of Influence
 
 
 
-
-
-
-
-
-
-
-
 <script type="text/javascript">
     var graph = 
       {
         "nodes": <?= $nodes ?>,
         "links": <?= $links ?>, 
-        // [
-        //   {"source": "nhtamim", "target": "nhtamim", "value": 1},
-        //  ]
       };
 
       var wid = $('body').width();
