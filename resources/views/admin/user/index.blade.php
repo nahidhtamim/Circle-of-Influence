@@ -248,7 +248,7 @@ Users - Circle of Influence
                                             <td>{{ $personal->influencer_note }}</td>
                                             <td class="text-primary">
                                               <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
-                                                <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">visibility</i></a>
+                                                <a href="#"><i class="material-icons">visibility</i></a>
                                               </button>
                                             </td>
                                         </tr>
@@ -315,7 +315,7 @@ Users - Circle of Influence
                                         <td>{{ $professional->influencer_note }}</td>
                                         <td class="text-primary">
                                           <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
-                                            <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">visibility</i></a>
+                                            <a href="#"><i class="material-icons">visibility</i></a>
                                           </button>
                                         </td>
                                     </tr>

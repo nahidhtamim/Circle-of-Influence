@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 05:35 AM
+-- Generation Time: Jan 31, 2022 at 12:22 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -55,6 +55,14 @@ CREATE TABLE `influencers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `influencers`
+--
+
+INSERT INTO `influencers` (`id`, `user_id`, `type_id`, `tenant_id`, `influencer_id`, `influencer_note`, `selection_id`, `influencer_no`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, 3, 'He is awesome', 1, 1, NULL, NULL),
+(2, 2, 2, 1, 3, 'He is Smart', 1, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,6 +156,13 @@ CREATE TABLE `selections` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `selections`
+--
+
+INSERT INTO `selections` (`id`, `activity_name`, `created_at`, `updated_at`) VALUES
+(1, '20220131.100530.testuser', '2022-01-31 04:05:30', '2022-01-31 04:05:30');
 
 -- --------------------------------------------------------
 
@@ -286,7 +301,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `influencers`
 --
 ALTER TABLE `influencers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `influencer_types`
@@ -310,7 +325,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tenants`

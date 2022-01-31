@@ -29,7 +29,7 @@ Activity History - Circle Of Influence
                                   </th>
                                   
                                   <th>
-                                      Activity ID
+                                    Influencer SL
                                   </th>                       
                                   <th>
                                       Influencer Type
