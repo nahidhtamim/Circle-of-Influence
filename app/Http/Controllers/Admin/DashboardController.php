@@ -13,12 +13,20 @@ class DashboardController extends Controller
         $users = User::all()->where('role_as', '!=', '1');
         $influencers = Influencer::all();
 
-        foreach ($users as $user) {
+        if(count($users) != 0){
+            foreach ($users as $user) {
             
-            $nodes[] = array(
-                "id" => $user['username'],
-            );
-        };
+                $nodes[] = array(
+                    "id" => $user['username'],
+                );
+            };
+        }
+        else{
+            $nodes = 0;
+        }
+        
+
+
         if(count($influencers) != 0){
             foreach ($influencers as $influencer) {
             
@@ -29,7 +37,7 @@ class DashboardController extends Controller
                 );
             };
         }
-        else{
+        elseif(count($users) != 0){
             foreach ($users as $user) {
             
                 $links[] = array(
@@ -38,6 +46,9 @@ class DashboardController extends Controller
                     "value"  => 1,
                 );
             };
+        }
+        else{
+            $links = 0;
         }
         
         return view('admin.index', compact('influencers', 'users'), 

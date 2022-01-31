@@ -55,7 +55,7 @@ Dashboard - Circle of Influence
 
 
 
-
+@if(isset($nodes) && !empty($nodes) && isset($links) && !empty($links))
 
 <script type="text/javascript">
     var graph = 
@@ -170,6 +170,16 @@ Dashboard - Circle of Influence
         d.fx = null;
         d.fy = null;
       }
-  </script>
+</script>
 
+@else
+
+
+
+@endif
+ <div class="card text-center">
+    <div class="card-header">
+      <h3>No data avalaible</h3>
+    </div>
+ </div>
 @endsection

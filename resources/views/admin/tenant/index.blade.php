@@ -37,12 +37,12 @@ Tenants - Circle of Influence
                   <th>
                     Description
                   </th>
-                  <th>
+                  {{-- <th>
                     Meta Title
                   </th>
                   <th>
                     Meta Keywords
-                  </th>
+                  </th> --}}
                   <th>
                     Status
                   </th>
@@ -62,12 +62,12 @@ Tenants - Circle of Influence
                     <td>
                       {{$tenant->tenant_desc}}
                     </td>
-                    <td>
+                    {{-- <td>
                       {{$tenant->meta_tenant_title}}
                     </td>
                     <td>
                       {{$tenant->meta_tenant_keywords}}
-                    </td>
+                    </td> --}}
                       @if($tenant->tenant_status == 1)
                       <td class="text-primary">
                         Active

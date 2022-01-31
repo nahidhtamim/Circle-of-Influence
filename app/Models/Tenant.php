@@ -15,8 +15,6 @@ class Tenant extends Model
         'tenant_name',
         'tenant_desc',
         'tenant_status',
-        'meta_tenant_title',
-        'meta_tenant_keywords',
     ];
 
     // public function tenant_user()
