@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2022 at 01:22 PM
+-- Generation Time: Jan 31, 2022 at 05:35 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -56,16 +56,6 @@ CREATE TABLE `influencers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `influencers`
---
-
-INSERT INTO `influencers` (`id`, `user_id`, `type_id`, `tenant_id`, `influencer_id`, `influencer_note`, `selection_id`, `influencer_no`, `created_at`, `updated_at`) VALUES
-(3, 4, 1, 1, 3, 'asd', 8, 1, NULL, NULL),
-(4, 4, 2, 1, 3, 'adsa', 8, 2, NULL, NULL),
-(5, 4, 1, 1, 2, 'asdas', 9, 1, NULL, NULL),
-(6, 4, 2, 1, 3, 'adasd', 9, 2, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -85,8 +75,8 @@ CREATE TABLE `influencer_types` (
 --
 
 INSERT INTO `influencer_types` (`id`, `influencer_type`, `type_status`, `created_at`, `updated_at`) VALUES
-(1, 'Personal', 1, '2022-01-30 04:41:11', '2022-01-30 04:41:11'),
-(2, 'Professional', 1, '2022-01-30 04:41:16', '2022-01-30 04:41:16');
+(1, 'Personal', 1, '2022-01-30 22:30:48', '2022-01-30 22:30:48'),
+(2, 'Professional', 1, '2022-01-30 22:30:53', '2022-01-30 22:30:53');
 
 -- --------------------------------------------------------
 
@@ -107,14 +97,14 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2022_01_21_210031_create_user_influencers_table', 1),
 (8, '2022_01_25_175706_create_influencer_selections_table', 1),
-(21, '2014_10_12_000000_create_users_table', 2),
-(22, '2014_10_12_100000_create_password_resets_table', 2),
-(23, '2019_08_19_000000_create_failed_jobs_table', 2),
-(24, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(25, '2022_01_18_120814_create_tenants_table', 2),
-(26, '2022_01_19_122026_create_influencer_types_table', 2),
-(27, '2022_01_26_201131_create_selections_table', 2),
-(28, '2022_01_26_201218_create_influencers_table', 2);
+(37, '2014_10_12_000000_create_users_table', 2),
+(38, '2014_10_12_100000_create_password_resets_table', 2),
+(39, '2019_08_19_000000_create_failed_jobs_table', 2),
+(40, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+(41, '2022_01_18_120814_create_tenants_table', 2),
+(42, '2022_01_19_122026_create_influencer_types_table', 2),
+(43, '2022_01_26_201131_create_selections_table', 2),
+(44, '2022_01_26_201218_create_influencers_table', 2);
 
 -- --------------------------------------------------------
 
@@ -159,21 +149,6 @@ CREATE TABLE `selections` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `selections`
---
-
-INSERT INTO `selections` (`id`, `activity_name`, `created_at`, `updated_at`) VALUES
-(1, '20220130.104312.narutouzumaki', '2022-01-30 04:43:12', '2022-01-30 04:43:12'),
-(2, '20220130.104515.narutouzumaki', '2022-01-30 04:45:15', '2022-01-30 04:45:15'),
-(3, '20220130.104539.narutouzumaki', '2022-01-30 04:45:39', '2022-01-30 04:45:39'),
-(4, '20220130.104707.narutouzumaki', '2022-01-30 04:47:07', '2022-01-30 04:47:07'),
-(5, '20220130.104723.narutouzumaki', '2022-01-30 04:47:23', '2022-01-30 04:47:23'),
-(6, '20220130.104734.narutouzumaki', '2022-01-30 04:47:34', '2022-01-30 04:47:34'),
-(7, '20220130.105603.narutouzumaki', '2022-01-30 04:56:03', '2022-01-30 04:56:03'),
-(8, '20220130.121938.narutouzumaki', '2022-01-30 06:19:38', '2022-01-30 06:19:38'),
-(9, '20220130.122028.narutouzumaki', '2022-01-30 06:20:28', '2022-01-30 06:20:28');
-
 -- --------------------------------------------------------
 
 --
@@ -185,8 +160,6 @@ CREATE TABLE `tenants` (
   `tenant_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenant_desc` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tenant_status` tinyint(4) NOT NULL DEFAULT 1,
-  `meta_tenant_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_tenant_keywords` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -195,9 +168,10 @@ CREATE TABLE `tenants` (
 -- Dumping data for table `tenants`
 --
 
-INSERT INTO `tenants` (`id`, `tenant_name`, `tenant_desc`, `tenant_status`, `meta_tenant_title`, `meta_tenant_keywords`, `created_at`, `updated_at`) VALUES
-(1, 'Default', 'Default', 1, 'Default', 'Default', '2022-01-30 04:39:27', '2022-01-30 04:39:27'),
-(2, 'Asia', 'Asia', 1, 'Asia', 'Asia', '2022-01-30 04:40:54', '2022-01-30 04:40:54');
+INSERT INTO `tenants` (`id`, `tenant_name`, `tenant_desc`, `tenant_status`, `created_at`, `updated_at`) VALUES
+(1, 'Default', 'Default', 1, '2022-01-30 22:29:36', '2022-01-30 22:29:36'),
+(2, 'Asia', 'Asia', 1, '2022-01-30 22:30:22', '2022-01-30 22:30:22'),
+(3, 'Europe', 'Europe', 1, '2022-01-30 22:30:33', '2022-01-30 22:30:33');
 
 -- --------------------------------------------------------
 
@@ -227,10 +201,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `mobile`, `address`, `email_verified_at`, `password`, `role_as`, `tenant_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '123456789', 'Romania', '2022-01-30 04:31:41', '$2y$10$88bms1lwaSSGKXHUAc7eGOwqpVkkQ7FGpNkl5PhpN441lDSRbuGNW', 1, 1, NULL, '2022-01-30 04:30:00', '2022-01-30 04:30:00'),
-(2, 'nahid', 'hasan', 'nahidhasan', 'nahid@codu.site', '12345678', 'Bangladesh', '2022-01-30 04:31:41', '$2y$10$22TAHTzgIS5wD6BWY3oE5unNMlmbxF4RQs4u4T5cX2VjDvf.yy4zO', 0, 1, NULL, '2022-01-30 04:31:31', '2022-01-30 04:31:41'),
-(3, 'son', 'goku', 'songoku', 'songoku@codu.site', '12345678', 'USA', '2022-01-30 04:32:49', '$2y$10$Mh3b5ioIgWxqhuS1g89okOYOVJRi8/gcAmCAcu6kyGIkr8gXINVrG', 0, 1, NULL, '2022-01-30 04:32:39', '2022-01-30 04:32:49'),
-(4, 'naruto', 'uzumaki', 'narutouzumaki', 'naruto@codu.site', '12345678', 'Leaf Village', '2022-01-30 04:34:53', '$2y$10$fmC0grs6Hiu.tdJeQDLxie5hNUaqKLy.hcfQSxxoWSk7fKXjs84Q.', 0, 1, NULL, '2022-01-30 04:34:44', '2022-01-30 04:34:53');
+(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '12345678', 'Romania', '2022-01-31 04:28:34', '$2y$10$n47oXWw8DAetx0xNg.GZiO6juZK7TH8pwHjLZ.4wrlpirBbri6IHq', 1, 1, NULL, '2022-01-30 22:28:25', '2022-01-30 22:31:16'),
+(2, 'test', 'user', 'testuser', 'testuser@gmail.com', '12345678', 'Romania', '2022-01-31 04:32:20', '$2y$10$Jd1TtZQvMmc9cBPgnm2aceVc6xd3BQIliTYb0HCdfpX4jLJOp.gcu', 0, 1, NULL, '2022-01-30 22:32:10', '2022-01-30 22:32:10'),
+(3, 'dummy', 'user', 'dummyuser', 'dummyuser@gmail.com', '12345678', 'Romania', '2022-01-31 04:33:27', '$2y$10$Jf7vz9fv/lm.0HKS0Bg0repZjh7KC8NKnu6sB6BOuMv/9bI0kpD0m', 0, 1, NULL, '2022-01-30 22:33:17', '2022-01-30 22:33:17');
 
 --
 -- Indexes for dumped tables
@@ -313,7 +286,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `influencers`
 --
 ALTER TABLE `influencers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `influencer_types`
@@ -325,7 +298,7 @@ ALTER TABLE `influencer_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -337,19 +310,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tenants`
 --
 ALTER TABLE `tenants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
