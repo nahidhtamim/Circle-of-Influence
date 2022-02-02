@@ -47,8 +47,8 @@ Pick Influencers - Circle Of Influence
                                 <td>
                                     <select id="inputState" class="form-control" name="influencer_id[]" required>
                                         @foreach($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->first_name }}
-                                                {{ $user->last_name }}
+                                            <option value="{{ $user->id }}">{{ $user->last_name }} {{ $user->first_name }} 
+                                                [{{ $user->email }}]
                                             </option>
                                         @endforeach
                                     </select>

@@ -15,9 +15,9 @@ class DashboardController extends Controller
 
         if(count($users) != 0){
             foreach ($users as $user) {
-            
+            $name = $user['last_name'].' '.$user['first_name'];
                 $nodes[] = array(
-                    "id" => $user['username'],
+                    "id" => $name,
                 );
             };
         }
@@ -29,20 +29,21 @@ class DashboardController extends Controller
 
         if(count($influencers) != 0){
             foreach ($influencers as $influencer) {
-            
+                $src = $influencer->user_inf->last_name.' '.$influencer->user_inf->first_name;
+                $tgt = $influencer->influencer->last_name.' '.$influencer->influencer->first_name;
                 $links[] = array(
-                    "source" => $influencer->user_inf->username,
-                    "target" => $influencer->influencer->username,
+                    "source" => $src,
+                    "target" => $tgt,
                     "value"  => 1,
                 );
             };
         }
         elseif(count($users) != 0){
             foreach ($users as $user) {
-            
+                $name = $user['last_name'].' '.$user['first_name'];
                 $links[] = array(
-                    "source" => $user->username,
-                    "target" => $user->username,
+                    "source" => $name,
+                    "target" => $name,
                     "value"  => 1,
                 );
             };

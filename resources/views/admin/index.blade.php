@@ -9,28 +9,32 @@ Dashboard - Circle of Influence
 <style>
 
     .card-body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
     }
     .node-label {
-    pointer-events: none;
-    font: 15px sans-serif;
-    color: #000000;
-    text-anchor: middle;
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
+      pointer-events: none;
+      font: 15px sans-serif;
+      color: #000000;
+      text-anchor: middle;
+      font-weight: bold;
+      -webkit-font-smoothing: antialiased;
     }
     .node {
-    transition: fill 0.3s ease-in-out, r 0.3s ease-in-out;
+      transition: fill 0.3s ease-in-out, r 0.3s ease-in-out;
     }
     .node:hover {
-    fill:  #942ca78e;
-    r: 90;
+      fill:  #942ca78e;
+      r: 90;
+    }
+    .node:hover .link{
+      width: 2px;
+      color: red;
     }
 </style>
 
@@ -173,13 +177,12 @@ Dashboard - Circle of Influence
 </script>
 
 @else
-
-
-
-@endif
- <div class="card text-center">
+<div class="card text-center">
     <div class="card-header">
       <h3>No data avalaible</h3>
     </div>
  </div>
+
+@endif
+
 @endsection
