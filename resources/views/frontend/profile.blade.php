@@ -35,13 +35,13 @@
                             </div>
                             <div class="col-md-6">
                                 <fieldset>
-                                    <input name="username" type="text" class="form-control" id="username"
+                                    <input name="username" type="text" class="form-control" style="color: grey;" id="username"
                                         value="{{$profile->username}}" required="" readonly/>
                                 </fieldset>
                             </div>
                             <div class="col-md-6">
                                 <fieldset>
-                                    <input name="email" type="text" class="form-control" id="email"
+                                    <input name="email" type="text" class="form-control" style="color: grey;" id="email"
                                     value="{{$profile->email}}" required="" readonly/>
                                 </fieldset>
                             </div>
@@ -81,8 +81,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    {{-- <input name="first_name" type="text" class="form-control" id="first_name"
-                                        value="{{$profile->first_name}}" required="" /> --}}
+
                                 </fieldset>
                             </div>
                             <div class="col-md-6">

@@ -29,7 +29,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-    
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <!-- fontawesome stylesheet https://fontawesome.com/ -->
+    <script src="https://kit.fontawesome.com/39094309d6.js" crossorigin="anonymous"></script>
+</head>
 
 </head>
 <body class="">

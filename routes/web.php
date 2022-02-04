@@ -84,6 +84,9 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::get('/users',[UserController::class, 'index']);
     Route::get('edit-user/{id}',[UserController::class, 'editUser']);
     Route::post('update-user/{id}',[UserController::class, 'updateUser']);
+    Route::get('/view-admin/{id}', [UserController::class, 'adminProfile']);
+    Route::post('/update-admin-profile/{id}', [UserController::class, 'updateAdminProfile']);
+    Route::post('/update-admin-password/{id}', [UserController::class, 'updateAdminPassword']);
 
     //Influencer Type Controllers
     Route::get('/influencer-types',[InfluencerTypeController::class, 'index']);

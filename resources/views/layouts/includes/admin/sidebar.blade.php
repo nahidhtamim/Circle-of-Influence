@@ -14,7 +14,7 @@
                 </h3>
             </a>
             <br>
-            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile" style="font-size: 30px;">
+            <a href="{{url('/view-admin/'.Auth::id())}}" data-toggle="tooltip" data-placement="top" title="Profile" style="font-size: 30px;">
                 <i class="fa fa-user"></i>
             </a>
             &nbsp;

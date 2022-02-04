@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Influencer;
 use App\Models\User;
+use App\Models\Influencer_Type;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -34,7 +35,7 @@ class DashboardController extends Controller
                 $links[] = array(
                     "source" => $src,
                     "target" => $tgt,
-                    "value"  => 1,
+                    "types"  => "influencer",
                 );
             };
         }
@@ -44,7 +45,7 @@ class DashboardController extends Controller
                 $links[] = array(
                     "source" => $name,
                     "target" => $name,
-                    "value"  => 1,
+                    "types"  => "influencer",
                 );
             };
         }

@@ -8,33 +8,24 @@ Dashboard - Circle of Influence
 
 <style>
 
-    .card-body {
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.card-body {
+        height: 100%;
+        background: #e6e7ee;
+        overflow: hidden;
+        margin: 0px;
+    }
 
+    .faded {
+        opacity: 0.1;
+        transition: 0.3s opacity;
     }
-    .node-label {
-      pointer-events: none;
-      font: 15px sans-serif;
-      color: #000000;
-      text-anchor: middle;
-      font-weight: bold;
-      -webkit-font-smoothing: antialiased;
-    }
-    .node {
-      transition: fill 0.3s ease-in-out, r 0.3s ease-in-out;
-    }
-    .node:hover {
-      fill:  #942ca78e;
-      r: 90;
-    }
-    .node:hover .link{
-      width: 2px;
-      color: red;
+
+circle:hover{
+  fill: aquamarine
+}
+
+    .highlight {
+        opacity: 1;
     }
 </style>
 
@@ -50,7 +41,7 @@ Dashboard - Circle of Influence
           </div>
         </div>
         <div class="card-body">
-
+          <svg id="svg"></svg>
         </div>
       </div>
     </div>
@@ -58,123 +49,255 @@ Dashboard - Circle of Influence
 
 
 
-
 @if(isset($nodes) && !empty($nodes) && isset($links) && !empty($links))
 
-<script type="text/javascript">
-    var graph = 
+    <script>
+        var graph = 
       {
         "nodes": <?= $nodes ?>,
         "links": <?= $links ?>, 
       };
 
-      var wid = $('body').width();
-      var hit = $('body').height();
+        var svg = d3.select("svg")
+            .attr("class", "canvas")
+            .attr("width", window.innerWidth)
+            .attr("height", window.innerHeight)
+            .call(d3.zoom().on("zoom", function (event) {
+                svg.attr("transform", event.transform)
+            }))
+            .append("g")
 
-      var mapOptions = {
-        width: wid,
-        height: hit,
-        nodeRadius: 40,
-        nodeStroke: '#16a085',
-        nodeStrokeWidth: 2,
-        getColor: function(group) {
-          return (group == 1) ? '#34495e' : '#ffffff'; 
+        // append markers to svg
+        svg.append("defs").append("marker")
+            .attr("id", "arrowhead")
+            .attr("viewBox", "-0 -5 10 10")
+            .attr("refX", 8)
+            .attr("refY", 0)
+            .attr("orient", "auto")
+            .attr("markerWidth", 50)
+            .attr("markerHeight", 50)
+            .attr("xoverflow", "visible")
+            .append("svg:path")
+            .attr("d", "M 0,-1 L 2 ,0 L 0,1")
+            .attr("fill", "black")
+            .style("stroke", "none")
+
+        var linksContainer = svg.append("g").attr("class", linksContainer)
+        var nodesContainer = svg.append("g").attr("class", nodesContainer)
+
+        var force = d3.forceSimulation()
+            .force("link", d3.forceLink().id(function (d) {
+                return d.id
+            }).distance(80))
+            .force("charge", d3.forceManyBody().strength(-100))
+            .force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
+            .force("collision", d3.forceCollide().radius(90))
+
+        initialize()
+
+        function initialize() {
+
+            link = linksContainer.selectAll(".link")
+                .data(graph.links)
+                .join("line")
+                .attr("class", "link")
+                .attr('marker-end', 'url(#arrowhead)')
+                .style("display", "block")
+                .style("stroke", "black")
+                .style("stroke-width", 1)
+
+            linkPaths = linksContainer.selectAll(".linkPath")
+                .data(graph.links)
+                .join("path")
+                .style("pointer-events", "none")
+                .attr("class", "linkPath")
+                .attr("fill-opacity", 1)
+                .attr("stroke-opacity", 1)
+                .attr("id", function (d, i) { return "linkPath" + i })
+                .style("display", "block")
+
+            linkLabels = linksContainer.selectAll(".linkLabel")
+                .data(graph.links)
+                .join("text")
+                .style("pointer-events", "none")
+                .attr("class", "linkLabel")
+                .attr("id", function (d, i) { return "linkLabel" + i })
+                .attr("font-size", 16)
+                .attr("fill", "black")
+                .text("")
+
+            linkLabels
+                .append("textPath")
+                .attr('xlink:href', function (d, i) { return '#linkPath' + i })
+                .style("text-anchor", "middle")
+                .style("pointer-events", "none")
+                .attr("startOffset", "50%")
+                .text(function (d) { return d.type })
+
+            node = nodesContainer.selectAll(".node")
+                .data(graph.nodes, d => d.id)
+                .join("g")
+                .attr("class", "node")
+                .call(d3.drag()
+                    .on("start", dragStarted)
+                    .on("drag", dragged)
+                    .on("end", dragEnded)
+                )
+
+            node.selectAll("circle")
+                .data(d => [d])
+                .join("circle")
+                .attr("r", 30)
+                .style("fill", "whitesmoke")
+                .on("mouseenter", mouseEnter)
+                .on("mouseleave", mouseLeave)
+
+            node.selectAll("text")
+                .data(d => [d])
+                .join("text")
+                .style("class", "icon")
+                .attr("font-family", "FontAwesome")
+                .attr("dominant-baseline", "central")
+                .attr("text-anchor", "middle")
+                .attr("font-size", 20)
+                .attr("fill", "black")
+                .attr("pointer-events", "none")
+                .attr("dy", "-1em")
+                .text(function (d) {
+                    return d.name
+                })
+            node.append("text")
+                .attr("dominant-baseline", "central")
+                .attr("text-anchor", "middle")
+                .attr("font-size", 13)
+                .attr("fill", "black")
+                .attr("pointer-events", "none")
+                .attr("dy", "0.5em")
+                .text(function (d) {
+                    return d.id
+                })
+
+            force
+                .nodes(graph.nodes)
+                .on("tick", ticked);
+
+            force
+                .force("link")
+                .links(graph.links)
         }
-      };
 
-      // initialize svg
-      var svg = d3.select('.card-body')
-        .append('svg')
-        .attr('width', mapOptions.width)
-        .attr('height', mapOptions.height);
+        function mouseEnter(event, d) {
+            const selNodes = node.selectAll("circle")
+            const selLink = link
+            const selLinkLabel = linkLabels
+            const selText = node.selectAll("text")
+            const related = []
+            const relatedLinks = []
 
-      // provide collide force to keep nodes from overlapping
-      var collide = d3.forceCollide(mapOptions.nodeRadius*1.5);
-
-      // force simulation
-      var simulation = d3.forceSimulation()
-          .force("link", d3.forceLink().id(function(d) { return d.id; }))
-          .force("charge", d3.forceManyBody())
-          .force("center", d3.forceCenter(mapOptions.width / 2, mapOptions.height / 2))
-          .force("collide", collide);
-
-      // add links
-      var link = svg.append("g")
-          .attr("class", "links")
-          .selectAll("line")
-          .data(graph.links)
-          .enter().append("line")
-            .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
-            .attr("stroke", 'black');
-        
-      // add nodes
-      var node = svg.append("g")
-        .attr("class", "nodes")
-        .selectAll("circle")
-        .data(graph.nodes)
-        .enter().append("circle")
-          .attr('class', 'node')
-          .attr('stroke', mapOptions.nodeStroke)
-          .attr('stroke-width', mapOptions.nodeStrokeWidth)
-          .attr("r", mapOptions.nodeRadius)
-          .attr("fill", function(d) { return mapOptions.getColor(d.group); })
-          .call(d3.drag()
-              .on("start", dragstarted)
-              .on("drag", dragged)
-              .on("end", dragended));
-        
-      // add node labels
-      var texts = svg.selectAll('text.node-label')
-        .data(graph.nodes)
-        .enter().append('text')
-        .attr('class', 'node-label')
-        .attr('fill', 'black')
-        .attr('dy', '0.15em')
-        .text(function(d) { return d.id; });
-
-      // add tick function
-      simulation
-          .nodes(graph.nodes)
-          .on("tick", ticked);
-
-      // add link forces
-      simulation.force("link")
-          .links(graph.links);
-
-
-
-      function ticked() {
-
-        link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
-
-        node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-
-        texts.attr('transform', function(d) {
-              return 'translate(' + d.x + ',' + d.y + ')';
+            related.push(d)
+            force.force('link').links().forEach((link) => {
+                if (link.source === d || link.target === d) {
+                    relatedLinks.push(link)
+                    if (related.indexOf(link.source) === -1) { related.push(link.source) }
+                    if (related.indexOf(link.target) === -1) { related.push(link.target) }
+                }
             })
-      }
+            selNodes.classed('faded', true)
+            selNodes.filter((dNodes) => related.indexOf(dNodes) > -1)
+                .classed('highlight', true)
+            selLink.classed('faded', true)
+            selLink.filter((dLink) => dLink.source === d || dLink.target === d)
+                .classed('highlight', true)
+            selLinkLabel.classed('faded', true)
+            selLinkLabel.filter((dLinkLabel) => dLinkLabel.source === d || dLinkLabel.target === d)
+                .classed('highlight', true)
+            selText.classed('faded', true)
+            selText.filter((dText) => related.indexOf(dText) > -1)
+                .classed('highlight', true)
+            
+            force.alphaTarget(0.0001).restart()
+        }
 
-      function dragstarted(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-      }
+        function mouseLeave(event, d) {
+            const selNodes = node.selectAll("circle")
+            const selLink = link
+            const selLinkLabel = linkLabels
+            const selText = node.selectAll("text")
 
-      function dragged(d) {
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-      }
+            selNodes.classed('faded', false)
+            selNodes.classed('highlight', false)
+            selLink.classed('faded', false)
+            selLink.classed('highlight', false)
+            selLinkLabel.classed('faded', false)
+            selLinkLabel.classed('highlight', false)
+            selText.classed('faded', false)
+            selText.classed('highlight', false)
+            
+            force.restart()
+        }
 
-      function dragended(d) {
-        if (!d3.event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-      }
-</script>
+        function ticked() {
+            // update link positions
+            link
+                .attr("x1", function (d) {
+                    return d.source.x;
+                })
+                .attr("y1", function (d) {
+                    return d.source.y;
+                })
+                .attr("x2", function (d) {
+                    return d.target.x;
+                })
+                .attr("y2", function (d) {
+                    return d.target.y;
+                });
+
+            // update node positions
+            node
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + ", " + d.y + ")";
+                });
+
+            linkPaths.attr('d', function (d) {
+                return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+            });
+
+            linkLabels.attr('transform', function (d) {
+                if (d.target.x < d.source.x) {
+                    var bbox = this.getBBox();
+
+                    rx = bbox.x + bbox.width / 2;
+                    ry = bbox.y + bbox.height / 2;
+                    return 'rotate(180 ' + rx + ' ' + ry + ')';
+                }
+                else {
+                    return 'rotate(0)';
+                }
+            });
+
+        }
+
+        function dragStarted(event, d) {
+            if (!event.active) force.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+
+            PosX = d.x
+            PosY = d.y
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragEnded(event, d) {
+            if (!event.active) force.alphaTarget(0);
+            d.fx = undefined;
+            d.fy = undefined;
+        }
+
+    </script>
 
 @else
 <div class="card text-center">

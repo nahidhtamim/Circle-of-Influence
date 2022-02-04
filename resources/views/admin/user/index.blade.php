@@ -102,82 +102,22 @@ Users - Circle of Influence
                                             @if($user->role_as == 1)
                                                 <td class="text-primary">
                                                     Admin
-                                                    {{-- <button rel="tooltip" title="Swap User Role"
-                                                        class="btn btn-primary btn-link btn-sm" data-toggle="modal"
-                                                        data-target="#exampleModal">
-                                                        <a
-                                                            href="{{ url('change-user-role/'.$user->id) }}"><i
-                                                                class="material-icons">published_with_changes</i></button></a> --}}
                                                 </td>
                                             @else
                                                 <td class="text-success">
                                                     Influencer
-                                                    {{-- <button rel="tooltip" title="Swap User Role"
-                                                        class="btn btn-primary btn-link btn-sm" data-toggle="modal"
-                                                        data-target="#exampleModal">
-                                                        <a
-                                                            href="{{ url('change-user-role/'.$user->id) }}"><i
-                                                                class="material-icons">published_with_changes</i></button></a> --}}
                                                 </td>
                                             @endif
                                             {{-- User Tenant -- --}}
                                             <td class="text-primary">
+                                                @if(count($tenants) == 0)
+                                                  <a href="{{url('/add-tenant')}}">Please create a new default tenant</a>  
+                                                @else
                                                 {{ $user->userTenant->tenant_name }}
-                                                {{-- <button rel="tooltip"
-                                                    title="Edit User Tenant" class="btn btn-primary btn-link btn-sm"
-                                                    data-toggle="modal" data-target="#exampleModal">
-                                                    <i class="material-icons">edit</i></button> --}}
-
-                                                <!-- Modal -->
-                                                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Change
-                                                                    Tenant</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form
-                                                                    action="{{ url('update-user-tenant/'.$user->id) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-12">
-                                                                            <select id="inputState" class="form-control"
-                                                                                name="tenant_id">
-                                                                                <option selected>Select a Tenant
-                                                                                </option>
-                                                                                @foreach($tenants as $tenant)
-                                                                                    <option value="{{ $tenant->id }}">
-                                                                                        {{ $tenant->tenant_name }}
-                                                                                    </option>
-                                                                                @endforeach
-
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Save</button>
-                                                                </form>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
+                                                @endif
 
 
                                             </td>
-                                            {{-- <td class="td-actions text-center">
-                                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" >
-                                                <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">edit</i></a>
-                                              </button>
-                                            </td> --}}
                                             <td class="text-primary">
                                                 <button type="button" rel="tooltip" title="Edit User Tenant" class="btn btn-primary btn-link btn-sm">
                                                     <a href="{{ url('edit-user/'.$user->id) }}"><i class="material-icons">edit</i></a></button>
@@ -228,9 +168,9 @@ Users - Circle of Influence
                                     <th>
                                         Note
                                     </th>
-                                    <th>
+                                    {{-- <th>
                                         Action
-                                    </th>
+                                    </th> --}}
                                 </thead>
                                 <tbody>
                                     @foreach($personal_influencers as $personal)
@@ -246,11 +186,11 @@ Users - Circle of Influence
                                             <td>{{ $personal->type->influencer_type }}</td>
                                             <td>{{ $personal->influencer->first_name }} {{ $personal->influencer->last_name }}</td>
                                             <td>{{ $personal->influencer_note }}</td>
-                                            <td class="text-primary">
+                                            {{-- <td class="text-primary">
                                               <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
                                                 <a href="#"><i class="material-icons">visibility</i></a>
                                               </button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
 
@@ -295,9 +235,9 @@ Users - Circle of Influence
                                 <th>
                                     Note
                                 </th>
-                                <th>
+                                {{-- <th>
                                     Action
-                                </th>
+                                </th> --}}
                             </thead>
                             <tbody>
                                 @foreach($professional_influencers as $professional)
@@ -313,11 +253,11 @@ Users - Circle of Influence
                                         <td>{{ $professional->type->influencer_type }}</td>
                                         <td>{{ $professional->influencer->first_name }} {{ $professional->influencer->last_name }}</td>
                                         <td>{{ $professional->influencer_note }}</td>
-                                        <td class="text-primary">
+                                        {{-- <td class="text-primary">
                                           <button type="button" rel="tooltip" title="View User Personal Influencers" class="btn btn-primary btn-link btn-sm" >
                                             <a href="#"><i class="material-icons">visibility</i></a>
                                           </button>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
 

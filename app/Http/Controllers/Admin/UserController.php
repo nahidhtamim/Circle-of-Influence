@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tenant;
 use App\Models\Influencer;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -44,11 +47,39 @@ class UserController extends Controller
         return redirect('/users')->with('status', 'User Updated Successfully');
     }
 
-    public function deleteUser($id)
+    // public function deleteUser($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->delete();
+    //     return redirect('/users')->with('status', 'User Deleted Successfully');
+    // }
+
+
+    public function adminProfile($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/users')->with('status', 'User Deleted Successfully');
+        $profile = User::find($id);
+
+        return view('admin.user.adminProfile', compact('profile'));
+
+    }
+
+    public function updateAdminProfile($id, Request $request)
+    {
+        $profile = User::find($id);
+        $profile->first_name = $request->input('first_name');
+        $profile->last_name = $request->input('last_name');
+        $profile->mobile = $request->input('mobile');
+        $profile->address = $request->input('address');
+        $profile->update();
+        return redirect('/dashboard')->with('status', 'User Updated Successfully');
+    }
+
+    public function updateAdminPassword($id, Request $request)
+    {
+        $profile = User::find($id);
+        $profile->password = Hash::make($request->input('password'));
+        $profile->update();
+        return redirect('/dashboard')->with('status', 'User Updated Successfully');
     }
 
 }
