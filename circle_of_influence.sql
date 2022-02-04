@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 12:22 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Feb 04, 2022 at 11:20 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,8 +61,14 @@ CREATE TABLE `influencers` (
 --
 
 INSERT INTO `influencers` (`id`, `user_id`, `type_id`, `tenant_id`, `influencer_id`, `influencer_note`, `selection_id`, `influencer_no`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, 3, 'He is awesome', 1, 1, NULL, NULL),
-(2, 2, 2, 1, 3, 'He is Smart', 1, 2, NULL, NULL);
+(1, 3, 1, 1, 2, 'A dummy Test', 1, 1, NULL, NULL),
+(2, 4, 1, 1, 2, 'ABC', 2, 1, NULL, NULL),
+(3, 4, 2, 1, 3, 'ABC', 2, 2, NULL, NULL),
+(4, 7, 1, 1, 2, 'ABC', 3, 1, NULL, NULL),
+(5, 7, 1, 1, 3, 'ABC', 3, 2, NULL, NULL),
+(6, 7, 2, 1, 4, 'ABC', 3, 3, NULL, NULL),
+(7, 6, 2, 2, 5, 'ABC', 4, 1, NULL, NULL),
+(8, 3, 1, 1, 7, 'A', 5, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,8 +89,8 @@ CREATE TABLE `influencer_types` (
 --
 
 INSERT INTO `influencer_types` (`id`, `influencer_type`, `type_status`, `created_at`, `updated_at`) VALUES
-(1, 'Personal', 1, '2022-01-30 22:30:48', '2022-01-30 22:30:48'),
-(2, 'Professional', 1, '2022-01-30 22:30:53', '2022-01-30 22:30:53');
+(1, 'Personal', 1, '2022-02-04 01:04:37', '2022-02-04 01:04:37'),
+(2, 'Professional', 1, '2022-02-04 01:04:45', '2022-02-04 01:04:45');
 
 -- --------------------------------------------------------
 
@@ -103,16 +109,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(7, '2022_01_21_210031_create_user_influencers_table', 1),
-(8, '2022_01_25_175706_create_influencer_selections_table', 1),
-(37, '2014_10_12_000000_create_users_table', 2),
-(38, '2014_10_12_100000_create_password_resets_table', 2),
-(39, '2019_08_19_000000_create_failed_jobs_table', 2),
-(40, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(41, '2022_01_18_120814_create_tenants_table', 2),
-(42, '2022_01_19_122026_create_influencer_types_table', 2),
-(43, '2022_01_26_201131_create_selections_table', 2),
-(44, '2022_01_26_201218_create_influencers_table', 2);
+(17, '2014_10_12_000000_create_users_table', 1),
+(18, '2014_10_12_100000_create_password_resets_table', 1),
+(19, '2019_08_19_000000_create_failed_jobs_table', 1),
+(20, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(21, '2022_01_18_120814_create_tenants_table', 1),
+(22, '2022_01_19_122026_create_influencer_types_table', 1),
+(23, '2022_01_26_201131_create_selections_table', 1),
+(24, '2022_01_26_201218_create_influencers_table', 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +166,11 @@ CREATE TABLE `selections` (
 --
 
 INSERT INTO `selections` (`id`, `activity_name`, `created_at`, `updated_at`) VALUES
-(1, '20220131.100530.testuser', '2022-01-31 04:05:30', '2022-01-31 04:05:30');
+(1, '20220204.080327.dummyuser', '2022-02-04 02:03:27', '2022-02-04 02:03:27'),
+(2, '20220204.100307.nahid', '2022-02-04 04:03:07', '2022-02-04 04:03:07'),
+(3, '20220204.100909.caludiu_s', '2022-02-04 04:09:09', '2022-02-04 04:09:09'),
+(4, '20220204.100937.tamim', '2022-02-04 04:09:37', '2022-02-04 04:09:37'),
+(5, '20220204.101642.dummyuser', '2022-02-04 04:16:42', '2022-02-04 04:16:42');
 
 -- --------------------------------------------------------
 
@@ -184,9 +192,8 @@ CREATE TABLE `tenants` (
 --
 
 INSERT INTO `tenants` (`id`, `tenant_name`, `tenant_desc`, `tenant_status`, `created_at`, `updated_at`) VALUES
-(1, 'Default', 'Default', 1, '2022-01-30 22:29:36', '2022-01-30 22:29:36'),
-(2, 'Asia', 'Asia', 1, '2022-01-30 22:30:22', '2022-01-30 22:30:22'),
-(3, 'Europe', 'Europe', 1, '2022-01-30 22:30:33', '2022-01-30 22:30:33');
+(1, 'Default', 'Default', 1, '2022-02-04 01:04:15', '2022-02-04 01:04:15'),
+(2, 'Asia', 'Asia', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -216,9 +223,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `mobile`, `address`, `email_verified_at`, `password`, `role_as`, `tenant_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '12345678', 'Romania', '2022-01-31 04:28:34', '$2y$10$n47oXWw8DAetx0xNg.GZiO6juZK7TH8pwHjLZ.4wrlpirBbri6IHq', 1, 1, NULL, '2022-01-30 22:28:25', '2022-01-30 22:31:16'),
-(2, 'test', 'user', 'testuser', 'testuser@gmail.com', '12345678', 'Romania', '2022-01-31 04:32:20', '$2y$10$Jd1TtZQvMmc9cBPgnm2aceVc6xd3BQIliTYb0HCdfpX4jLJOp.gcu', 0, 1, NULL, '2022-01-30 22:32:10', '2022-01-30 22:32:10'),
-(3, 'dummy', 'user', 'dummyuser', 'dummyuser@gmail.com', '12345678', 'Romania', '2022-01-31 04:33:27', '$2y$10$Jf7vz9fv/lm.0HKS0Bg0repZjh7KC8NKnu6sB6BOuMv/9bI0kpD0m', 0, 1, NULL, '2022-01-30 22:33:17', '2022-01-30 22:33:17');
+(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '123456789', 'Romania', '2022-02-04 06:52:40', '$2y$10$7pqiJucdXYXViDYoKhWkQ.4FRC/0pn9ZR5/pQRuWQ9VHSx0VeszcW', 1, 1, NULL, '2022-02-04 00:52:24', '2022-02-04 02:16:29'),
+(2, 'test', 'user', 'testuser', 'testuser@gmail.com', '1234567890', 'Romania', '2022-02-04 08:01:32', '$2y$10$8PYy7J3PRSZrgApXMRIMVehHtj2M82mQ.diEfyGRTrVuhmxQaXWLK', 0, 1, NULL, '2022-02-04 02:01:23', '2022-02-04 02:01:23'),
+(3, 'dummy', 'user', 'dummyuser', 'dummyuser@gmail.com', '1234567890', 'Romania', '2022-02-04 08:02:51', '$2y$10$nVlsHJN..4yItQ.wP.Z.JOgUt19iXW4LJTBfgyQmUqz3e8.mpqbO2', 0, 1, NULL, '2022-02-04 02:02:38', '2022-02-04 02:02:38'),
+(4, 'nahid', 'ht', 'nahid', 'nahid@gmail.com', '1234567890', 'Bangladesh', '2022-02-04 10:02:44', '$2y$10$lnp6sYzQShRWhObeqeCnqOzb8l.r.W29C1rcUmhgs/BOFVqSyiXUu', 0, 1, NULL, '2022-02-04 04:02:38', '2022-02-04 04:02:38'),
+(5, 'hasan', 'hasan', 'hasan', 'hasan@gmail.com', '1234567890', 'Bangladesh', '2022-02-04 10:05:13', '$2y$10$DVtZVQlZ17gGxf9ri6u9mej0A2rxss7cvZO8GP5N9lSChdqYWg.aq', 0, 2, NULL, '2022-02-04 04:05:03', '2022-02-04 04:05:03'),
+(6, 'tamim', 'tamim', 'tamim', 'tamim@gmail.com', '1234567890', 'Bangladesh', '2022-02-04 10:06:56', '$2y$10$yq51KSf1Fn7U80JZSoP4l.0aFUC0ubB4woR9EbiRYFGDgaZDRlCkK', 0, 2, NULL, '2022-02-04 04:06:46', '2022-02-04 04:06:46'),
+(7, 'caludiu', 's', 'caludiu_s', 'caludiu@gmail.com', '12345678', 'Romania', '2022-02-04 10:08:06', '$2y$10$YaXwOEcheBtw8amlwIglt.82hv/pWrxlIboPWiLLUCSl0f4rqMaKS', 0, 1, NULL, '2022-02-04 04:07:56', '2022-02-04 04:07:56');
 
 --
 -- Indexes for dumped tables
@@ -301,7 +312,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `influencers`
 --
 ALTER TABLE `influencers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `influencer_types`
@@ -313,7 +324,7 @@ ALTER TABLE `influencer_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -325,19 +336,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tenants`
 --
 ALTER TABLE `tenants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
